@@ -1,6 +1,6 @@
 # Memorivar
 
-Memorivar es una aplicación web que se basa en el aprendizaje espaciado (similar a Duolingo y Memrise)
+## Memorivar es una aplicación web que se basa en el aprendizaje espaciado (similar a Duolingo y Memrise)
 
 
 # Creadores:
