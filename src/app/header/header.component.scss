@@ -1,0 +1,43 @@
+mat-toolbar {
+  position: fixed;
+  top: 0;
+  z-index: 1;
+}
+
+.header {
+  background-color: #343146;
+  align-items: center;
+  justify-content: space-between;
+  padding: 40px 15px;
+}
+
+h1 a {
+  text-decoration: none;
+  color: inherit;
+}
+
+.nav {
+  display: flex;
+  align-items: center;
+}
+
+.separator {
+  height: 20px !important;
+  background-color: #307bff !important;
+  width: 100%;
+}
+
+.mat-button {
+  background-color: #307bff;
+  margin: 0 10px;
+  border-radius: 20px !important;
+}
+
+.user-photo {
+  border-radius: 50%;
+}
+
+.menu {
+  font-size: 1.5em;
+  padding: 0 10px;
+}

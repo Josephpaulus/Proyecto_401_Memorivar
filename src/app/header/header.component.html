@@ -1,0 +1,16 @@
+<mat-toolbar>
+  <mat-toolbar-row class="header">
+    <h1 class="title"><a routerLink="/">MEMORIVAR</a></h1>
+    <div class="nav">
+      <a routerLink="/explore" mat-button>Explorar</a>
+      <a routerLink="/add-course" mat-button>Crear curso</a>
+      <img
+        src="https://material.angularjs.org/1.1.1/img/list/60.jpeg"
+        class="md-avatar user-photo"
+        alt=""
+      />
+      <mat-icon (click)="openMenu()" class="menu">arrow_drop_down</mat-icon>
+    </div>
+  </mat-toolbar-row>
+  <mat-toolbar-row class="separator"> </mat-toolbar-row>
+</mat-toolbar>
