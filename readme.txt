@@ -5,4 +5,4 @@ Creadores:
 
 Pellegrini Acosta José Pablo 
 Bueno Sarabia Joel Iván
-Heraldez Cervantes Ulises
+Heraldez Cervantes Ulisez
