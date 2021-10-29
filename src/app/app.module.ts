@@ -22,6 +22,13 @@ import { ExploreCoursesComponent } from './courses/explore-courses/explore-cours
 import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
 
+//Ulises
+import {MatCardModule} from '@angular/material/card';
+import {MatTabsModule} from '@angular/material/tabs';
+import {MatInputModule} from '@angular/material/input';
+import {FormsModule} from '@angular/forms';
+import {MatSnackBarModule} from '@angular/material/snack-bar';
+
 @NgModule({
   declarations: [
     AppComponent,
@@ -45,6 +52,11 @@ import { AddCourseComponent } from './courses/add-course/add-course.component';
     MatIconModule,
     MatGridListModule,
     MatProgressBarModule,
+    MatCardModule,
+    MatTabsModule,
+    MatInputModule,
+    FormsModule,
+    MatSnackBarModule
   ],
   providers: [],
   bootstrap: [AppComponent],

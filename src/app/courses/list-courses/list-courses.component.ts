@@ -8,6 +8,13 @@ import { ListCourses } from '../courses';
 })
 export class ListCoursesComponent implements OnInit {
   listCourses: ListCourses[] = [];
+  message: string = "";
+
+  recibirMensaje($event: any): void {
+    this.message = $event;
+    console.log(this.message);
+  }
+
 
   constructor() {}
 
