@@ -1,21 +1,31 @@
 <div class="wrapper">
-    <div class="explorar_main">
-        <h2>En esta página podremos explorar cursos creados por otros usuarios
-            y nos podremos registrar a ellos para poder completarlos
-        </h2>
-        
-        <br><br><br>
-
-        <h2>
-            Este es un prototipo de como podría quedar la ventana de explorar cursos:
-        </h2>
-        <img src="../assets/explorar_curso.png" alt="Fallo al cargar la imagen">
-        <br><br><br>
-        <br><br><br>
+    <div class="explore-courses">
 
 
 
 
+        <div class="course" *ngFor="let course of listCourses">
+            <div class="image">
+              <img
+                src="{{course.image}}"
+                alt=""
+              />
+            </div>
+            <div class="content">
+              <div class="info">
+                <div class="name">{{course.name}}</div>
+                <div class="advance">{{course.wordsLearned}}/{{course.totalWords}} palabras aprendidas</div>
+              </div>
+              <mat-progress-bar mode="determinate" value="{{course.progress}}"></mat-progress-bar>
+              <div class="info">
+                <div class="review">Repasar en {{course.reviewIn}} horas</div>
+                <div class="actions">
+                  <a mat-button>REPASAR</a>
+                  <a mat-button>APRENDER</a>
+                </div>
+              </div>
+            </div>
+          </div>
 
 
 
