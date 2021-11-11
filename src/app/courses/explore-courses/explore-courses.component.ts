@@ -19,7 +19,7 @@ export class ExploreCoursesComponent implements OnInit {
   constructor() { }
 
   ngOnInit(): void {
-    for (let i = 0; i < 10; i++) {
+    for (let i = 0; i < 25; i++) {
       const course: ListCourses = {
         name: `Curso #${i + 1}`,
         image: `../assets/${this.rand(1,10) }.png`,
