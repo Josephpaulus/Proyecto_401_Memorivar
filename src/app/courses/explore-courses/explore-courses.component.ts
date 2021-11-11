@@ -22,11 +22,11 @@ export class ExploreCoursesComponent implements OnInit {
     for (let i = 0; i < 10; i++) {
       const course: ListCourses = {
         name: `Curso #${i + 1}`,
-        image: 'https://material.angularjs.org/1.1.1/img/list/60.jpeg',
+        image: `../assets/${this.rand(1,10) }.png`,
         wordsLearned: this.rand(0, 10),
-        totalWords: this.rand(0, 100),
+        totalWords: this.rand(30, 100),
         progress: this.rand(0, 40),
-        reviewIn: this.rand(1, 3),
+        reviewIn: this.rand(4, 16),
       };
       this.listCourses.push(course);
     }
