@@ -1,0 +1,27 @@
+<%- include ('partials/_header')  %>
+
+
+<div class="container">
+    <div class="row">
+        <div class="col-md-5">
+            <div class="card">
+                <div class="card-body">
+                    <form action="/update/<%= data.curso_id %>" method="post">
+                        <div class="form-group">
+                            <input type="text" name="Nombre" value="<%= data.curso_nombre %>" class="form-control">
+                        </div>
+                        <div class="form-group">
+                            <input type="text" name="Descripcion" value="<%= data.curso_descripcion %>" class="form-control">
+                        </div>
+                        <button type="submit" class="btn btn-primary">
+                            Modificar Curso
+                        </button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+<%- include ('partials/_footer')  %>
