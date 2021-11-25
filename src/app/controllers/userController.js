@@ -20,18 +20,11 @@ controller.add = (req, res) => {
     const data = req.body;
 
     req.getConnection((err, conn) => {
-/*         conn.query('INSERT INTO t_curso set ?', [data], (err, usuario) => {
-            console.log(usuario);
-            console.log(data);
-            res.redirect('/');
-        }); */
-
-        conn.query(`INSERT INTO t_curso (curso_estado_publico, curso_nombre, curso_descripcion) VALUES (1, '${data.Nombre}', '${data.Descripcion}')`);
+        conn.query(`INSERT INTO t_curso (curso_estado_publico, curso_nombre, curso_descripcion) 
+        VALUES (1, '${data.Nombre}', '${data.Descripcion}')`);
         //console.log(data.Nombre);
         //console.log(data.Descripcion);
         res.redirect('/');
-
-        /* conn.query(`INSERT INTO t_curso VALUES (4, 4, 4, 'Japones', 'Taka')`); */
     })
 };
 
@@ -50,11 +43,8 @@ controller.update = (req, res) => {
     const curso_id = req.params.curso_id;
     const newCurso = req.body;
     req.getConnection((err, conn) => {
-        /* conn.query('UPDATE t_curso set ? WHERE curso_id = ?', [newCurso, curso_id], (err, rows) => {
-            res.redirect('/');
-        }); */
-
-        conn.query(`UPDATE t_curso set curso_nombre = '${newCurso.Nombre}', curso_descripcion = '${newCurso.Descripcion}' WHERE curso_id = ?`, [curso_id], (err, rows) => {
+        conn.query(`UPDATE t_curso set curso_nombre = '${newCurso.Nombre}', 
+        curso_descripcion = '${newCurso.Descripcion}' WHERE curso_id = ?`, [curso_id], (err, rows) => {
             res.redirect('/');
         });
     });
@@ -64,10 +54,6 @@ controller.delete = (req, res) => {
     //console.log(req.params.curso_id); Muestra el ID del curso a eliminar
     const curso_id = req.params.curso_id;
     req.getConnection((err, conn) => {
-/*         conn.query('DELETE FROM t_curso WHERE curso_id = ?', [curso_id], (err, rows) => {
-        res.redirect('/');
-        }) */
-
         conn.query('UPDATE t_curso SET curso_estado_publico = 0 where curso_id = ?', [curso_id], (err, rows) => {
             res.redirect('/');
         })
