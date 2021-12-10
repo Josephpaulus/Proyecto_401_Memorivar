@@ -1,25 +1,23 @@
 <div class="wrapper">
   <div class="list-courses">
-
-    <div class="titulo">En esta página puede explorar los cursos en los que está registrado <br><br>
-      y también puede ver el avance que lleva en cada uno
-    </div>
-
     <div class="course" *ngFor="let course of listCourses">
       <div class="image">
-        <img
-          src="{{course.image}}"
-          alt=""
-        />
+        <img src="{{ course.image }}" alt="" />
       </div>
       <div class="content">
         <div class="info">
-          <div class="name">{{course.name}}</div>
-          <div class="advance">{{course.wordsLearned}}/{{course.totalWords}} palabras aprendidas</div>
+          <div class="name">{{ course.name }}</div>
+          <div class="advance">
+            {{ course.wordsLearned }}/{{ course.totalWords }} palabras
+            aprendidas
+          </div>
         </div>
-        <mat-progress-bar mode="determinate" value="{{course.progress}}"></mat-progress-bar>
+        <mat-progress-bar
+          mode="determinate"
+          value="{{ course.progress }}"
+        ></mat-progress-bar>
         <div class="info">
-          <div class="review">Repasar en {{course.reviewIn}} hora (s)</div>
+          <div class="review">Repasar en {{ course.reviewIn }} hora (s)</div>
           <div class="actions">
             <a mat-button>REPASAR</a>
             <a mat-button>APRENDER</a>

@@ -8,13 +8,6 @@ import { ListCourses } from '../courses';
 })
 export class ListCoursesComponent implements OnInit {
   listCourses: ListCourses[] = [];
-  message: string = "";
-
-  recibirMensaje($event: any): void {
-    this.message = $event;
-    console.log(this.message);
-  }
-
 
   constructor() {}
 
@@ -23,9 +16,9 @@ export class ListCoursesComponent implements OnInit {
       const course: ListCourses = {
         name: `Curso #${i + 1}`,
         image: `../assets/${i + 1}.png`,
-        wordsLearned: i+1+(i*2),
-        totalWords: i+30+(i*5),
-        progress: (i+1+(i*2))/(i+30+(i*5))*100,
+        wordsLearned: i + 1 + i * 2,
+        totalWords: i + 30 + i * 5,
+        progress: ((i + 1 + i * 2) / (i + 30 + i * 5)) * 100,
         reviewIn: this.rand(1, 6),
       };
       this.listCourses.push(course);

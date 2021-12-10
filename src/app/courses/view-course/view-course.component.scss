@@ -1,0 +1,80 @@
+.view-course {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+
+  .header {
+    width: 100%;
+    background: hsl(249deg 30% 21%);
+    display: flex;
+    padding: 20px 10px;
+    justify-content: center;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+
+    .image {
+      width: 20%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+
+      img {
+        border-radius: 30%;
+        width: 80px;
+        height: 80px;
+      }
+    }
+
+    .info-content {
+      width: 75%;
+      display: flex;
+      flex-direction: column;
+
+      .name {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 8px;
+      }
+
+      .description {
+        word-wrap: break-word;
+      }
+
+      .more-info {
+        display: flex;
+        justify-content: space-between;
+
+        .owner {
+          display: flex;
+          align-items: center;
+
+          span {
+            margin-left: 5px;
+            font-weight: 500;
+          }
+        }
+
+        .mat-button {
+          background-color: #307bff;
+          margin: 0 10px;
+          border-radius: 20px !important;
+
+          &:last-child {
+            margin-right: 0px;
+          }
+        }
+      }
+    }
+  }
+
+  .content {
+    width: 80%;
+    margin-top: 20px;
+
+    table {
+      width: 100%;
+    }
+  }
+}

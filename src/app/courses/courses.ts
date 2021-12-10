@@ -19,3 +19,12 @@ export interface ListCourses {
   progress: number;
   reviewIn: number;
 }
+
+export interface course {
+  id: number;
+  user_id: number;
+  name: string;
+  description: string;
+  image: string;
+  words: Words[];
+}

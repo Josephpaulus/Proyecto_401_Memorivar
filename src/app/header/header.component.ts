@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 @Component({
   selector: 'app-header',
@@ -14,6 +14,9 @@ export class HeaderComponent implements OnInit {
 
   openMenu() {
     this.isOpenMenu = !this.isOpenMenu;
-    console.log('openMenu', this.isOpenMenu);
+  }
+
+  closeMenu() {
+    this.isOpenMenu = false;
   }
 }

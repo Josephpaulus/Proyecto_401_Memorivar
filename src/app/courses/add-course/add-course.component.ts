@@ -94,7 +94,7 @@ export class AddCourseComponent implements OnInit {
     this.answerInput.nativeElement.value = '';
   }
 
-  createCourse() {
+  create() {
     const course: AddCourse = {
       name: this.nameInput,
       description: this.descriptionInput,
@@ -105,10 +105,10 @@ export class AddCourseComponent implements OnInit {
 
     console.log(course);
 
-    this.CoursesService.createCourse(course).subscribe((res) => {
+    this.CoursesService.create(course).subscribe((res) => {
       console.log(res);
 
-      this.router.navigate(['./list']);
+      this.router.navigate(['./courses']);
     });
   }
 }

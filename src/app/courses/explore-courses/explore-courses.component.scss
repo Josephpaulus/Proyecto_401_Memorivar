@@ -1,90 +1,55 @@
-.explorar_main {
-    background: rgb(71, 96, 134);
+.explore {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
 
-    color: black;
-    margin-top: 130px;
-    padding-left: 15px;
-}
-
-
-
-
-.explore-courses {
-    display: flex;
-    align-items: center;
-    flex-direction: column;
-  }
-  
   .course {
     width: 90%;
     display: flex;
     margin: 10px 0;
-    border: 1px solid #E4E8EB;
+    border: 1px solid #e4e8eb;
     border-radius: 10px;
     color: #fff;
     padding: 20px 10px;
     max-width: 700px;
-  }
-  
-  .course .image {
-    width: 20%;
-    text-align: center;
-    display: flex;
-    justify-content: center;
-    align-items: center;
-  }
-  
-  .course .image img {
-    border-radius: 30%;
-    width: 80px;
-  }
-  
-  .content {
-    width: 78%;
-  }
-  
-  .info {
-    display: flex;
-    justify-content: space-between;
-  }
-  
-  mat-progress-bar {
-    margin: 20px 0;
-    height: 10px;
-  }
-  
-  ::ng-deep .mat-progress-bar-fill::after {
-    background-color: #307bff;
-  }
-  
-  ::ng-deep .mat-progress-bar-buffer {
-    background: #E4E8EB;
-  }
-  
-  ::ng-deep .mat-progress-bar {
-    border-radius: 2px;
-  }
-  
-  .actions .mat-button:last-child {
-    margin-right: 0px;
-  }
-  
-  
-  .mat-button {
-    background-color: #307bff;
-    margin: 0 10px;
-    border-radius: 20px !important;
-  }
 
+    .image {
+      width: 20%;
+      text-align: center;
+      display: flex;
+      justify-content: center;
+      align-items: start;
 
+      img {
+        border-radius: 30%;
+        width: 80px;
+        height: 80px;
+      }
+    }
 
-  .titulo{
+    .content {
+      width: 78%;
 
-    padding-top: 30px;
-    padding-bottom: 40px;
-    color: white;
-    font-size: 32px;
+      .name {
+        font-size: 20px;
+        font-weight: 500;
+        margin-bottom: 5px;
+      }
 
-    text-align: center;
+      .actions {
+        display: flex;
+        justify-content: end;
 
+        .mat-button {
+          background-color: #307bff;
+          margin: 0 10px;
+          border-radius: 20px !important;
+
+          &:last-child {
+            margin-right: 0;
+          }
+        }
+      }
+    }
   }
+}

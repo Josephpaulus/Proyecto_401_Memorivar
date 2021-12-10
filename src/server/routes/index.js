@@ -1,5 +1,6 @@
 // Módulos
 const courses = require('./courses');
+const users = require('./users');
 
 // Route the app
 const router = (app, pool) => {
@@ -8,6 +9,7 @@ const router = (app, pool) => {
     response.send('');
   });
 
+  users(app, pool);
   courses(app, pool);
 };
 

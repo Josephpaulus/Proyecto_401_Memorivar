@@ -31,6 +31,9 @@ import { MatTabsModule } from '@angular/material/tabs';
 import { MatInputModule } from '@angular/material/input';
 import { FormsModule } from '@angular/forms';
 import { MatSnackBarModule } from '@angular/material/snack-bar';
+import { HeaderProfileComponent } from './users/header-profile/header-profile.component';
+import { ProfileComponent } from './users/profile/profile.component';
+import { ViewCourseComponent } from './courses/view-course/view-course.component';
 
 @NgModule({
   declarations: [
@@ -43,6 +46,9 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
     ExploreCoursesComponent,
     ResetPasswordComponent,
     AddCourseComponent,
+    HeaderProfileComponent,
+    ProfileComponent,
+    ViewCourseComponent,
   ],
   imports: [
     HttpClientModule,

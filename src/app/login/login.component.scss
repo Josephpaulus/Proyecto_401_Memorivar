@@ -59,10 +59,14 @@ mat-card-title {
     caret-color: #fff;
   }
 
-  .login-main {
+  .login-main .mat-tab-header {
     .mat-ripple,
     mat-ink-bar {
       width: 50% !important;
     }
+  }
+
+  .cdk-overlay-pane {
+    margin-top: 100px!important;
   }
 }

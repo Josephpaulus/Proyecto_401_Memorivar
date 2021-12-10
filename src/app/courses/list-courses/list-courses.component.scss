@@ -1,5 +1,3 @@
-
-
 .list-courses {
   display: flex;
   align-items: center;
@@ -10,24 +8,24 @@
   width: 90%;
   display: flex;
   margin: 10px 0;
-  border: 1px solid #E4E8EB;
+  border: 1px solid #e4e8eb;
   border-radius: 10px;
   color: #fff;
   padding: 20px 10px;
   max-width: 700px;
-}
 
-.course .image {
-  width: 20%;
-  text-align: center;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-}
+  .image {
+    width: 20%;
+    text-align: center;
+    display: flex;
+    justify-content: center;
+    align-items: center;
 
-.course .image img {
-  border-radius: 30%;
-  width: 80px;
+    img {
+      border-radius: 30%;
+      width: 80px;
+    }
+  }
 }
 
 .content {
@@ -49,7 +47,7 @@ mat-progress-bar {
 }
 
 ::ng-deep .mat-progress-bar-buffer {
-  background: #E4E8EB;
+  background: #e4e8eb;
 }
 
 ::ng-deep .mat-progress-bar {
@@ -60,21 +58,8 @@ mat-progress-bar {
   margin-right: 0px;
 }
 
-
 .mat-button {
   background-color: #307bff;
   margin: 0 10px;
   border-radius: 20px !important;
-}
-
-
-.titulo{
-
-  padding-top: 30px;
-  padding-bottom: 40px;
-  color: white;
-  font-size: 32px;
-
-  text-align: center;
-
 }

@@ -1,0 +1,15 @@
+<div class="container">
+  <div class="row user">
+    <div class="user">{{ user ? user.user : "No login" }}</div>
+  </div>
+  <div class="row info">
+    <div class="profile" (click)="openProfile()">
+      <mat-icon matSuffix>person</mat-icon>
+      <span>Perfil</span>
+    </div>
+    <div class="logout" (click)="logout()">
+      <mat-icon matSuffix>exit_to_app</mat-icon>
+      <span>Log out</span>
+    </div>
+  </div>
+</div>

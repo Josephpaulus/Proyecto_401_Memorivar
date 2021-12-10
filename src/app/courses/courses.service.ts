@@ -2,7 +2,7 @@ import { HttpClient } from '@angular/common/http';
 import { Injectable } from '@angular/core';
 import { Observable } from 'rxjs';
 import { environment } from 'src/environments/environment';
-import { AddCourse } from './courses';
+import { AddCourse, course } from './courses';
 
 @Injectable({
   providedIn: 'root',
@@ -10,10 +10,22 @@ import { AddCourse } from './courses';
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
-  createCourse(course: AddCourse): Observable<AddCourse> {
+  create(course: AddCourse): Observable<AddCourse> {
     return this.http.post<AddCourse>(
       environment.API_URL + '/courses/add',
       course
+    );
+  }
+
+  explore(): Observable<course[]> {
+    return this.http.get<course[]>(
+      environment.API_URL + '/courses'
+    );
+  }
+
+  getCourse(id: number): Observable<course> {
+    return this.http.get<course>(
+      environment.API_URL + '/courses/' + id
     );
   }
 }

@@ -3,15 +3,18 @@
     <h1 class="title"><a routerLink="/">MEMORIVAR</a></h1>
     <div class="nav">
       <a routerLink="/explore" mat-button>Explorar</a>
-      <a routerLink="/add-course" mat-button>Crear curso</a>
-      <a routerLink="/list" mat-button>Home</a>
+      <a routerLink="/courses/add" mat-button>Crear curso</a>
+      <a routerLink="/courses" mat-button>Home</a>
       <img
         src="https://material.angularjs.org/1.1.1/img/list/60.jpeg"
         class="md-avatar user-photo"
         alt=""
       />
-      <mat-icon (click)="openMenu()" class="menu">arrow_drop_down</mat-icon>
+      <div class="profile">
+        <mat-icon (click)="openMenu()" class="menu">arrow_drop_down</mat-icon>
+        <app-header-profile (closeMenu)="closeMenu()" *ngIf="isOpenMenu"></app-header-profile>
+      </div>
     </div>
   </mat-toolbar-row>
-  <mat-toolbar-row class="separator"> </mat-toolbar-row>
+  <mat-toolbar-row class="separator"></mat-toolbar-row>
 </mat-toolbar>

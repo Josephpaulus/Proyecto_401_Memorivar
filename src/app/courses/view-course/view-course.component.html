@@ -1,0 +1,41 @@
+<div class="wrapper">
+  <div class="view-course">
+    <div class="header">
+      <div class="image">
+        <img
+          src="https://www.welivesecurity.com/wp-content/uploads/2018/04/cursos-online-gratuitos-seguridad-inform%C3%A1tica.jpg"
+          alt=""
+        />
+      </div>
+      <div class="info-content">
+        <div class="name">{{course?.name}}</div>
+        <div class="description">{{course?.description}}</div>
+        <div class="more-info">
+          <div class="owner">Creador por:<span>{{courseOwner}}</span></div>
+          <div class="actions">
+            <a mat-button>EMPEZAR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <table
+        #listWords
+        mat-table
+        [dataSource]="dataSource"
+        class="mat-elevation-z8"
+      >
+        <ng-container matColumnDef="concept">
+          <th mat-header-cell *matHeaderCellDef>Palabra</th>
+          <td mat-cell *matCellDef="let element">{{ element.concept }}</td>
+        </ng-container>
+        <ng-container matColumnDef="answer">
+          <th mat-header-cell *matHeaderCellDef>Respuesta</th>
+          <td mat-cell *matCellDef="let element">{{ element.answer }}</td>
+        </ng-container>
+        <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+        <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+      </table>
+    </div>
+  </div>
+</div>

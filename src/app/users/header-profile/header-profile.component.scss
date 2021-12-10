@@ -1,0 +1,49 @@
+.container {
+  width: 150px;
+  position: absolute;
+  right: 10px;
+  font-size: 13px;
+  color: #3e3e3e;
+  text-align: center;
+
+  &::before {
+    content: "";
+    position: absolute;
+    width: 10px;
+    height: 10px;
+    background: #ececec;
+    transform: rotateZ(45deg);
+    right: 19px;
+    top: -5px;
+  }
+}
+
+.row {
+  background: #fff;
+}
+
+.user {
+  background: #ececec;
+  border-radius: 5px 5px 0 0;
+  font-size: 16px;
+}
+
+.info {
+  display: flex;
+  justify-content: space-evenly;
+  padding-top: 5px;
+  height: 45px;
+  border-radius: 0 0 5px 5px;
+
+  div {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    cursor: pointer;
+
+    span {
+      position: relative;
+      top: -8px;
+    }
+  }
+}

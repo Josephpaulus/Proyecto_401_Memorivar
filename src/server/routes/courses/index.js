@@ -1,4 +1,3 @@
-// Route the app
 const courses = (app, pool) => {
   // para hacer consultas secuenciales
   const query = function (sql, values) {
@@ -28,7 +27,7 @@ const courses = (app, pool) => {
   // 1 = privado
   // 0 = eliminado
   app.get('/courses', (request, response) => {
-    pool.query('SELECT * FROM cursos WHERE estado = ?', 2, (error, result) => {
+    pool.query('SELECT * FROM courses WHERE status = ?', 2, (error, result) => {
       if (error) throw error;
 
       response.send(result);
@@ -39,10 +38,22 @@ const courses = (app, pool) => {
   app.get('/courses/:id', (request, response) => {
     const id = request.params.id;
 
-    pool.query('SELECT * FROM cursos WHERE id = ?', id, (error, result) => {
+    pool.query('SELECT * FROM courses WHERE id = ?', id, (error, result) => {
       if (error) throw error;
 
-      response.send(result);
+      const course = result[0];
+
+      pool.query(
+        'SELECT * FROM courses_data WHERE course_id = ?',
+        id,
+        (error, result) => {
+          if (error) throw error;
+
+          course.words = result;
+
+          response.json(course);
+        }
+      );
     });
   });
 
@@ -51,7 +62,7 @@ const courses = (app, pool) => {
     const course = request.body;
 
     pool.query(
-      `INSERT INTO cursos (nombre, descripcion, estado) VALUES (?, ?, ?)`,
+      `INSERT INTO courses (name, description, status) VALUES (?, ?, ?)`,
       [course.name, course.description, course.courseStatus],
       async (error, result) => {
         if (error) throw error;
@@ -61,7 +72,7 @@ const courses = (app, pool) => {
         // Guardar las conceptos sencuencialmente
         for (const word of course.words) {
           await query(
-            'INSERT INTO cursos_datos (id_curso, concepto, respuesta) VALUES (?, ?, ?)',
+            'INSERT INTO courses_data (course_id, concept, answer) VALUES (?, ?, ?)',
             [course_id, word.concept, word.answer],
             (error, result) => {
               if (error) throw error;
@@ -80,12 +91,12 @@ const courses = (app, pool) => {
     const course = request.body;
 
     pool.query(
-      'UPDATE cursos SET nombre = ?, descripcion = ? WHERE id = ?',
+      'UPDATE course SET name = ?, description = ? WHERE id = ?',
       [course.nombre, course.descripcion, id],
       (error, result) => {
         if (error) throw error;
 
-        response.send('Curso actualizado.');
+        response.end();
       }
     );
   });
@@ -95,11 +106,11 @@ const courses = (app, pool) => {
     const id = request.params.id;
 
     pool.query(
-      'UPDATE cursos SET estado = ? WHERE id = ?',
+      'UPDATE course SET status = ? WHERE id = ?',
       [0, id],
       (error, result) => {
         if (error) throw error;
-        response.send('Curso elminado.');
+        response.end();
       }
     );
   });
