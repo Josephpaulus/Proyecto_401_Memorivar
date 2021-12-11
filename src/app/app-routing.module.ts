@@ -1,7 +1,9 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
+import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { ExploreCoursesComponent } from './courses/explore-courses/explore-courses.component';
+import { InfoCourseComponent } from './courses/info-course/info-course.component';
 import { ListCoursesComponent } from './courses/list-courses/list-courses.component';
 import { ViewCourseComponent } from './courses/view-course/view-course.component';
 import { LoginComponent } from './login/login.component';
@@ -54,6 +56,16 @@ const routes: Routes = [
   {
     path: 'courses/:id',
     component: ViewCourseComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'courses/:id/info',
+    component: InfoCourseComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'courses/:id/edit',
+    component: EditCourseComponent,
     canActivate: [IsAuthenticatedGuard],
   },
   // error 404

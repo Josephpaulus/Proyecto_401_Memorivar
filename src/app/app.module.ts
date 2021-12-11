@@ -34,6 +34,8 @@ import { MatSnackBarModule } from '@angular/material/snack-bar';
 import { HeaderProfileComponent } from './users/header-profile/header-profile.component';
 import { ProfileComponent } from './users/profile/profile.component';
 import { ViewCourseComponent } from './courses/view-course/view-course.component';
+import { InfoCourseComponent } from './courses/info-course/info-course.component';
+import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 
 @NgModule({
   declarations: [
@@ -49,6 +51,8 @@ import { ViewCourseComponent } from './courses/view-course/view-course.component
     HeaderProfileComponent,
     ProfileComponent,
     ViewCourseComponent,
+    InfoCourseComponent,
+    EditCourseComponent,
   ],
   imports: [
     HttpClientModule,

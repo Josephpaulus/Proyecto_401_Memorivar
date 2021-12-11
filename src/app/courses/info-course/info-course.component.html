@@ -1,19 +1,22 @@
 <div class="wrapper">
-  <div class="view-course">
+  <div class="info-course">
     <div class="header">
       <div class="image">
-        <img
-          src="{{ course?.image }}"
-          alt=""
-        />
+        <img src="{{ course?.image }}" alt="" />
       </div>
       <div class="info-content">
-        <div class="name">{{course?.name}}</div>
-        <div class="description">{{course?.description}}</div>
+        <div class="name">{{ course?.name }}</div>
+        <div class="description">{{ course?.description }}</div>
         <div class="more-info">
-          <div class="owner">Creado por:<span>{{courseOwner}}</span></div>
+          <div class="owner">
+            Creado por:<span>{{ courseOwner }}</span>
+          </div>
           <div class="actions">
-            <a mat-button>EMPEZAR</a>
+            <a mat-button>APRENDER</a>
+            <a mat-button>REPASAR</a>
+            <a mat-button [routerLink]="['/courses/', courseId, 'edit']"
+              >EDITAR</a
+            >
           </div>
         </div>
       </div>
@@ -31,6 +34,10 @@
         </ng-container>
         <ng-container matColumnDef="answer">
           <th mat-header-cell *matHeaderCellDef>Respuesta</th>
+          <td mat-cell *matCellDef="let element">{{ element.answer }}</td>
+        </ng-container>
+        <ng-container matColumnDef="review">
+          <th mat-header-cell *matHeaderCellDef>Repasar en</th>
           <td mat-cell *matCellDef="let element">{{ element.answer }}</td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

@@ -30,48 +30,48 @@
 
 .info {
   display: flex;
-}
 
-.input-info {
-  display: flex;
-  flex-direction: column;
-  width: 100%;
-}
+  .input-info {
+    display: flex;
+    flex-direction: column;
+    width: 100%;
+  }
 
-.image {
-  width: 20%;
-  display: flex;
-  justify-content: center;
-  align-items: center;
-  flex-direction: column;
-}
+  .image {
+    width: 20%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
 
-.image img {
-  border-radius: 30%;
-  width: 80px;
-}
+    img {
+      border-radius: 30%;
+      width: 80px;
+    }
 
-.upload-image {
-  margin-top: 10px !important;
+    .upload-image {
+      margin-top: 10px !important;
+    }
+  }
 }
 
 .words-input {
   display: flex;
-}
 
-.words-input mat-form-field {
-  width: 80%;
-  padding-right: 5px;
-}
+  mat-form-field {
+    width: 80%;
+    padding-right: 5px;
+  }
 
-.add-word {
-  width: 20%;
-  display: flex;
-  align-items: center;
-}
+  .add-word {
+    width: 20%;
+    display: flex;
+    align-items: center;
 
-.add-word a.mat-focus-indicator.mat-button.mat-button-base {
-  margin-bottom: 20px;
+    a.mat-focus-indicator.mat-button.mat-button-base {
+      margin-bottom: 20px;
+    }
+  }
 }
 
 mat-progress-bar {
@@ -79,14 +79,14 @@ mat-progress-bar {
   height: 10px;
 }
 
-.actions .mat-button:last-child {
-  margin-right: 0px;
-}
-
 .mat-button {
   background-color: #307bff;
   margin: 0 10px;
   border-radius: 20px !important;
+
+  &:last-child {
+    margin-right: 0px;
+  }
 }
 
 .footer {
@@ -97,12 +97,12 @@ mat-progress-bar {
   .mat-button {
     margin-right: 0;
   }
-}
 
-.more-options {
-  width: 80%;
-  display: flex;
-  align-items: center;
+  .more-options {
+    width: 80%;
+    display: flex;
+    align-items: center;
+  }
 }
 
 table {

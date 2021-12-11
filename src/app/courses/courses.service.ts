@@ -10,9 +10,22 @@ import { AddCourse, course } from './courses';
 export class CoursesService {
   constructor(private http: HttpClient) {}
 
-  create(course: AddCourse): Observable<AddCourse> {
-    return this.http.post<AddCourse>(
+  create(course: course): Observable<any> {
+    return this.http.post<any>(
       environment.API_URL + '/courses/add',
+      course
+    );
+  }
+
+  delete(id: number): Observable<any> {
+    return this.http.get<any>(
+      environment.API_URL + '/courses/delete/' + id
+    );
+  }
+
+  update(course: course): Observable<any> {
+    return this.http.post<any>(
+      environment.API_URL + '/courses/update',
       course
     );
   }
@@ -26,6 +39,13 @@ export class CoursesService {
   getCourse(id: number): Observable<course> {
     return this.http.get<course>(
       environment.API_URL + '/courses/' + id
+    );
+  }
+
+  // usuario
+  userCourses(id: number): Observable<course[]> {
+    return this.http.get<course[]>(
+      environment.API_URL + '/courses/user/' + id
     );
   }
 }

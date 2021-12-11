@@ -1,6 +1,8 @@
 export interface Words {
+  id?: number;
   concept: string;
   answer: string;
+  deleted?: boolean;
 }
 
 export interface AddCourse {
@@ -21,10 +23,11 @@ export interface ListCourses {
 }
 
 export interface course {
-  id: number;
+  id?: number;
   user_id: number;
   name: string;
   description: string;
   image: string;
   words: Words[];
+  status: number;
 }

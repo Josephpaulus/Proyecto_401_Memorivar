@@ -1,26 +1,30 @@
 <div class="wrapper">
   <div class="list-courses">
-    <div class="course" *ngFor="let course of listCourses">
+    <div class="course" *ngFor="let course of courses">
       <div class="image">
         <img src="{{ course.image }}" alt="" />
       </div>
       <div class="content">
         <div class="info">
           <div class="name">{{ course.name }}</div>
-          <div class="advance">
+          <!-- <div class="advance">
             {{ course.wordsLearned }}/{{ course.totalWords }} palabras
             aprendidas
-          </div>
+          </div> -->
+          <div class="advance">...</div>
         </div>
-        <mat-progress-bar
+        <!-- <mat-progress-bar
           mode="determinate"
           value="{{ course.progress }}"
-        ></mat-progress-bar>
+        ></mat-progress-bar> -->
+        <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
         <div class="info">
-          <div class="review">Repasar en {{ course.reviewIn }} hora (s)</div>
+          <div class="review">...</div>
+          <!-- <div class="review">Repasar en {{ course.reviewIn }} hora (s)</div> -->
           <div class="actions">
-            <a mat-button>REPASAR</a>
             <a mat-button>APRENDER</a>
+            <a mat-button>REPASAR</a>
+            <a mat-button [routerLink]="['/courses/', course.id, 'info']">VER</a>
           </div>
         </div>
       </div>

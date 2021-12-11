@@ -6,14 +6,14 @@ import { CoursesService } from '../courses.service';
 import { UsersService } from '../../users/users.service';
 
 @Component({
-  selector: 'app-view-course',
-  templateUrl: './view-course.component.html',
-  styleUrls: ['./view-course.component.scss'],
+  selector: 'app-info-course',
+  templateUrl: './info-course.component.html',
+  styleUrls: ['./info-course.component.scss'],
 })
-export class ViewCourseComponent implements OnInit {
+export class InfoCourseComponent implements OnInit {
   @ViewChild('listWords') listWords!: MatTable<Words>;
 
-  displayedColumns: string[] = ['concept', 'answer'];
+  displayedColumns: string[] = ['concept', 'answer', 'review'];
   dataSource: Words[] = [];
 
   courseId!: number;

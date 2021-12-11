@@ -1,0 +1,159 @@
+.title h1 {
+    text-align: center;
+    padding-top: 20px;
+    color: #fff;
+    font-size: 40px;
+    font-weight: 400;
+  }
+  
+  .add-course {
+    display: flex;
+    align-items: center;
+    flex-direction: column;
+  
+    table .mat-cell {
+      width: 50%;
+    }
+  }
+  
+  .content {
+    width: 90%;
+    display: flex;
+    flex-direction: column;
+    margin: 10px 0;
+    border: 1px solid #e4e8eb;
+    border-radius: 10px;
+    color: #fff;
+    padding: 20px 10px;
+    max-width: 700px;
+  }
+  
+  .info {
+    display: flex;
+  
+    .input-info {
+      display: flex;
+      flex-direction: column;
+      width: 100%;
+    }
+  
+    .image {
+      width: 20%;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      flex-direction: column;
+      margin-left: 5px;
+  
+      img {
+        border-radius: 30%;
+        width: 80px;
+      }
+  
+      .upload-image {
+        margin-top: 10px !important;
+      }
+    }
+  }
+  
+  .words-input {
+    display: flex;
+  
+    mat-form-field {
+      width: 80%;
+      padding-right: 5px;
+    }
+  
+    .add-word {
+      width: 20%;
+      display: flex;
+      align-items: center;
+  
+      a.mat-focus-indicator.mat-button.mat-button-base {
+        margin-bottom: 20px;
+      }
+    }
+  }
+  
+  mat-progress-bar {
+    margin: 20px 0;
+    height: 10px;
+  }
+  
+  .mat-button {
+    background-color: #307bff;
+    margin: 0 10px;
+    border-radius: 20px !important;
+    min-width: auto;
+  }
+  
+  .footer {
+    display: flex;
+    margin-top: 20px;
+    justify-content: space-between;
+  
+    .mat-button {
+      margin-right: 0;
+    }
+  
+    .more-options {
+      width: 80%;
+      display: flex;
+      align-items: center;
+    }
+  }
+  
+  table {
+    width: 100%;
+  }
+  
+  .actions {
+    display: flex;
+  
+    button {
+      width: 40px;
+      height: 40px;
+      border-radius: 50% !important;
+      min-width: 0;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+    }
+  }
+  
+  ::ng-deep {
+    .mat-input-element {
+      caret-color: #fff;
+    }
+  
+    .mat-form-field.mat-focused {
+      .mat-form-field-label {
+        color: #fff;
+      }
+  
+      .mat-form-field-ripple {
+        background-color: #307bff;
+      }
+    }
+  
+    .mat-radio-button.mat-accent {
+      .mat-radio-inner-circle {
+        background-color: #307bff;
+      }
+  
+      &.mat-radio-checked {
+        .mat-radio-outer-circle {
+          border-color: #307bff;
+        }
+  
+        .mat-radio-persistent-ripple {
+          background-color: #307bff;
+        }
+      }
+    }
+  
+    .mat-radio-label-content {
+      padding-right: 10px !important;
+    }
+  }
+  

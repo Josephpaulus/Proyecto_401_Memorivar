@@ -1,5 +1,8 @@
 import { Component, OnInit } from '@angular/core';
-import { ListCourses } from '../courses';
+import { user } from 'src/app/users/users';
+import { UsersService } from 'src/app/users/users.service';
+import { course, ListCourses } from '../courses';
+import { CoursesService } from '../courses.service';
 
 @Component({
   selector: 'app-list-courses',
@@ -7,25 +10,21 @@ import { ListCourses } from '../courses';
   styleUrls: ['./list-courses.component.scss'],
 })
 export class ListCoursesComponent implements OnInit {
-  listCourses: ListCourses[] = [];
+  courses: course[] = [];
+  user!: user;
 
-  constructor() {}
-
-  ngOnInit(): void {
-    for (let i = 0; i < 10; i++) {
-      const course: ListCourses = {
-        name: `Curso #${i + 1}`,
-        image: `../assets/${i + 1}.png`,
-        wordsLearned: i + 1 + i * 2,
-        totalWords: i + 30 + i * 5,
-        progress: ((i + 1 + i * 2) / (i + 30 + i * 5)) * 100,
-        reviewIn: this.rand(1, 6),
-      };
-      this.listCourses.push(course);
-    }
+  constructor(private CoursesService: CoursesService, private UsersService: UsersService) {
+    this.user = this.UsersService.getCurrentUser();
   }
+  ngOnInit(): void {
+    this.CoursesService.userCourses(this.user.id).subscribe((courses) => {
+      for (const course of courses) {
+        if (!course.image) {
+          course.image = 'https://www.welivesecurity.com/wp-content/uploads/2018/04/cursos-online-gratuitos-seguridad-inform%C3%A1tica.jpg';
+        }
+      }
 
-  rand(min: number, max: number) {
-    return Math.floor(Math.random() * (max - min) + min);
+      this.courses = courses;
+    });
   }
 }

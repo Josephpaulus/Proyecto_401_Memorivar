@@ -2,19 +2,20 @@ import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { CoursesService } from '../courses.service';
 import { Words, AddCourse, course } from '../courses';
-import { Router } from '@angular/router';
-import { UsersService } from 'src/app/users/users.service';
+import { ActivatedRoute, Router } from '@angular/router';
 import { user } from 'src/app/users/users';
+import { UsersService } from 'src/app/users/users.service';
 
 @Component({
-  selector: 'app-add-course',
-  templateUrl: './add-course.component.html',
-  styleUrls: ['./add-course.component.scss'],
+  selector: 'app-edit-course',
+  templateUrl: './edit-course.component.html',
+  styleUrls: ['./edit-course.component.scss'],
 })
-export class AddCourseComponent implements OnInit {
-  user!: user
-  
+export class EditCourseComponent implements OnInit {
+  user!: user;
+
   // datos del curso
+  courseId!: number;
   nameInput: string = '';
   descriptionInput: string = '';
   imageInput: string = '';
@@ -34,8 +35,26 @@ export class AddCourseComponent implements OnInit {
   @ViewChild('wordInput') wordInput!: ElementRef;
   @ViewChild('answerInput') answerInput!: ElementRef;
 
-  constructor(private UsersService: UsersService, private CoursesService: CoursesService, private router: Router) {
+  constructor(
+    private UsersService: UsersService,
+    private CoursesService: CoursesService,
+    private route: ActivatedRoute,
+    private router: Router
+  ) {
     this.user = this.UsersService.getCurrentUser();
+    this.courseId = this.route.snapshot.params.id;
+
+    this.CoursesService.getCourse(this.courseId).subscribe((course) => {
+      if (!course.image) {
+        course.image =
+          'https://www.welivesecurity.com/wp-content/uploads/2018/04/cursos-online-gratuitos-seguridad-inform%C3%A1tica.jpg';
+      }
+
+      this.nameInput = course.name;
+      this.descriptionInput = course.description;
+      this.status = course.status.toString();
+      this.dataSource = course.words;
+    });
   }
 
   ngOnInit(): void {}
@@ -78,7 +97,14 @@ export class AddCourseComponent implements OnInit {
     this.listWords.renderRows();
   }
 
+  wordsToRemove: Words[] = [];
+
   removeWord(row: Words) {
+    if (row.id) {
+      row.deleted = true;
+      this.wordsToRemove.push(row);
+    }
+
     this.dataSource.splice(this.dataSource.indexOf(row), 1);
     this.listWords.renderRows();
   }
@@ -100,8 +126,9 @@ export class AddCourseComponent implements OnInit {
     this.answerInput.nativeElement.value = '';
   }
 
-  create() {
+  update() {
     const course: course = {
+      id: this.courseId,
       user_id: this.user.id,
       name: this.nameInput,
       description: this.descriptionInput,
@@ -110,10 +137,14 @@ export class AddCourseComponent implements OnInit {
       status: Number(this.status),
     };
 
-    console.log(course);
+    course.words = [...course.words, ...this.wordsToRemove];
 
-    this.CoursesService.create(course).subscribe((res) => {
-      this.router.navigate(['./courses']);
+    console.table(course.words);
+
+    this.CoursesService.update(course).subscribe((res) => {
+      this.router.navigate(['./courses/', this.courseId, 'info']);
     });
   }
+
+  delete() {}
 }

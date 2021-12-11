@@ -1,0 +1,111 @@
+<div class="wrapper">
+    <div class="title">
+      <h1>Editar curso</h1>
+    </div>
+    <div class="add-course">
+      <form class="content" autocomplete="off">
+        <div class="info">
+          <div class="input-info">
+            <mat-form-field class="input" appearance="fill">
+              <mat-label>Nombre</mat-label>
+              <input
+                [(ngModel)]="nameInput"
+                name="name"
+                matInput
+                placeholder="Ex. inglés"
+              />
+            </mat-form-field>
+            <mat-form-field class="input" appearance="fill">
+              <mat-label>Descripción</mat-label>
+              <textarea
+                [(ngModel)]="descriptionInput"
+                name="description"
+                matInput
+                placeholder="Ex. Curso de inglés básico"
+              ></textarea>
+            </mat-form-field>
+          </div>
+          <div class="image">
+            <img
+              src="https://material.angularjs.org/1.1.1/img/list/60.jpeg"
+              alt=""
+            />
+            <a class="upload-image" mat-button>SUBIR IMAGEN</a>
+          </div>
+        </div>
+        <div class="words">
+          <div class="words-content">
+            <div class="words-input">
+              <mat-form-field class="input" appearance="fill">
+                <mat-label>Palabra</mat-label>
+                <input #wordInput name="word" matInput placeholder="Ex. hello" />
+              </mat-form-field>
+              <mat-form-field class="input" appearance="fill">
+                <mat-label>Respuesta</mat-label>
+                <input
+                  #answerInput
+                  name="answer"
+                  matInput
+                  placeholder="Ex. hola"
+                />
+              </mat-form-field>
+              <div class="add-word">
+                <a (click)="addWord()" mat-button>
+                  <mat-icon matSuffix>{{ addIcon }}</mat-icon>
+                </a>
+              </div>
+            </div>
+          </div>
+          <table
+            #listWords
+            mat-table
+            [dataSource]="dataSource"
+            class="mat-elevation-z8"
+          >
+            <ng-container matColumnDef="concept">
+              <th mat-header-cell *matHeaderCellDef>Palabra</th>
+              <td mat-cell *matCellDef="let element">{{ element.concept }}</td>
+            </ng-container>
+            <ng-container matColumnDef="answer">
+              <th mat-header-cell *matHeaderCellDef>Respuesta</th>
+              <td mat-cell *matCellDef="let element">{{ element.answer }}</td>
+            </ng-container>
+            <ng-container matColumnDef="actions">
+              <th mat-header-cell *matHeaderCellDef>Acciones</th>
+              <td mat-cell *matCellDef="let element">
+                <div class="actions">
+                  <button (click)="updateWord(element)" mat-button>
+                    <mat-icon>edit</mat-icon>
+                  </button>
+                  <button (click)="removeWord(element)" mat-button>
+                    <mat-icon>delete_forever</mat-icon>
+                  </button>
+                </div>
+              </td>
+            </ng-container>
+            <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
+            <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>
+          </table>
+          <div class="footer">
+            <div class="more-options">
+              <mat-radio-group
+                [(ngModel)]="status"
+                name="course-status"
+                aria-label="Select an option"
+              >
+                <mat-radio-button value="2">Público</mat-radio-button>
+                <mat-radio-button value="1" checked>Privado</mat-radio-button>
+              </mat-radio-group>
+            </div>
+            <a (click)="delete()" class="delete-course" mat-button>
+                Eliminar
+              </a>
+            <a (click)="update()" class="create-course" mat-button>
+              Guardar
+            </a>
+          </div>
+        </div>
+      </form>
+    </div>
+  </div>
+  

@@ -44,7 +44,7 @@ const courses = (app, pool) => {
       const course = result[0];
 
       pool.query(
-        'SELECT * FROM courses_data WHERE course_id = ?',
+        'SELECT * FROM courses_data WHERE course_id = ? AND status = 1',
         id,
         (error, result) => {
           if (error) throw error;
@@ -57,20 +57,41 @@ const courses = (app, pool) => {
     });
   });
 
+  // cursos que cursa un usuario
+  app.get('/courses/user/:id', (request, response) => {
+    const id = request.params.id;
+
+    pool.query(
+      'SELECT * FROM courses WHERE id IN (SELECT course_id FROM users_courses WHERE user_id = ?);',
+      id,
+      (error, result) => {
+        if (error) throw error;
+
+        response.json(result);
+      }
+    );
+  });
+
   // Agregar un curso
   app.post('/courses/add', (request, response) => {
     const course = request.body;
 
     pool.query(
-      `INSERT INTO courses (name, description, status) VALUES (?, ?, ?)`,
-      [course.name, course.description, course.courseStatus],
+      `INSERT INTO courses (user_id, name, description, image, status) VALUES (?, ?, ?, ?, ?)`,
+      [
+        course.user_id,
+        course.name,
+        course.description,
+        course.image,
+        course.status,
+      ],
       async (error, result) => {
         if (error) throw error;
 
         const course_id = result.insertId;
 
         // Guardar las conceptos sencuencialmente
-        for (const word of course.words) {
+        course.words.forEach(async (word) => {
           await query(
             'INSERT INTO courses_data (course_id, concept, answer) VALUES (?, ?, ?)',
             [course_id, word.concept, word.answer],
@@ -78,7 +99,15 @@ const courses = (app, pool) => {
               if (error) throw error;
             }
           );
-        }
+        });
+
+        await query(
+          'INSERT INTO users_courses (user_id, course_id) VALUES (?, ?)',
+          [course.user_id, course_id],
+          (error, result) => {
+            if (error) throw error;
+          }
+        );
 
         response.send(result.insertId.toString());
       }
@@ -86,15 +115,44 @@ const courses = (app, pool) => {
   });
 
   // Actualizar un curso
-  app.post('/courses/update/:id', (request, response) => {
-    const id = request.params.id;
+  app.post('/courses/update', (request, response) => {
     const course = request.body;
 
+    console.log(course);
+
     pool.query(
-      'UPDATE course SET name = ?, description = ? WHERE id = ?',
-      [course.nombre, course.descripcion, id],
+      'UPDATE courses SET name = ?, description = ?, image = ?, status = ? WHERE id = ?',
+      [course.name, course.description, course.image, course.status, course.id],
       (error, result) => {
         if (error) throw error;
+
+        course.words.forEach(async (word) => {
+          if (word.deleted) {
+            await query(
+              'UPDATE courses_data SET status = 0 WHERE id = ?',
+              word.id,
+              (error, result) => {
+                if (error) throw error;
+              }
+            );
+          } else if (word.id) {
+            await query(
+              'UPDATE courses_data SET concept = ?, answer = ? WHERE id = ?',
+              [word.concept, word.answer, word.id],
+              (error, result) => {
+                if (error) throw error;
+              }
+            );
+          } else {
+            await query(
+              'INSERT INTO courses_data (course_id, concept, answer) VALUES (?, ?, ?)',
+              [course.id, word.concept, word.answer],
+              (error, result) => {
+                if (error) throw error;
+              }
+            );
+          }
+        });
 
         response.end();
       }
