@@ -1,0 +1,104 @@
+.learn-course {
+  display: flex;
+  align-items: center;
+  flex-direction: column;
+  color: #fff;
+
+  .header {
+    width: 100%;
+    background: hsl(249deg 30% 21%);
+    display: flex;
+    padding: 20px 10px;
+    justify-content: space-between;
+    box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
+      0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
+
+    .title,
+    .close {
+      display: flex;
+      align-items: center;
+    }
+
+    .title {
+      font-size: 20px;
+      font-weight: 500;
+      margin-left: 10px;
+    }
+
+    .close {
+      margin-right: 10px;
+      cursor: pointer;
+    }
+  }
+
+  .content {
+    margin-top: 20px;
+    width: 90%;
+    max-width: 600px;
+    display: flex;
+
+    .info {
+      width: 90%;
+      border-bottom: 1px solid;
+    }
+
+    .more-info {
+      width: 10%;
+      display: flex;
+      flex-direction: column;
+      margin-left: 5px;
+
+      .points {
+        margin: 20px 0;
+        text-align: center;
+        background-color: #307bff;
+        border-radius: 10px;
+        height: 17px;
+        display: flex;
+        justify-content: center;
+        align-items: center;
+
+        span {
+          font-size: 13px;
+        }
+      }
+
+      .next {
+        text-align: center;
+        background-color: #307bff;
+        border-radius: 2px;
+        padding: 5px 0;
+        cursor: pointer;
+
+        .mat-icon {
+          font-size: 40px;
+          height: 40px;
+          width: 40px;
+        }
+
+        .action {
+          font-size: 11px;
+          font-weight: 500;
+        }
+      }
+    }
+  }
+}
+
+mat-progress-bar {
+  margin: 20px 0;
+  height: 17px;
+}
+
+::ng-deep {
+  .mat-progress-bar-fill::after {
+    background-color: #307bff;
+  }
+  .mat-progress-bar-buffer {
+    background: #e4e8eb;
+  }
+
+  .mat-progress-bar {
+    border-radius: 10px;
+  }
+}

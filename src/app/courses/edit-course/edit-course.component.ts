@@ -146,5 +146,9 @@ export class EditCourseComponent implements OnInit {
     });
   }
 
-  delete() {}
+  delete() {
+    this.CoursesService.delete(this.courseId).subscribe((res) => {
+      this.router.navigate(['./courses']);
+    });
+  }
 }

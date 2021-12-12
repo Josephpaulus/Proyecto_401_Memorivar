@@ -44,8 +44,8 @@ const courses = (app, pool) => {
       const course = result[0];
 
       pool.query(
-        'SELECT * FROM courses_data WHERE course_id = ? AND status = 1',
-        id,
+        'SELECT * FROM courses_data WHERE course_id = ? AND status = ?',
+        [id, 1],
         (error, result) => {
           if (error) throw error;
 
@@ -62,8 +62,8 @@ const courses = (app, pool) => {
     const id = request.params.id;
 
     pool.query(
-      'SELECT * FROM courses WHERE id IN (SELECT course_id FROM users_courses WHERE user_id = ?);',
-      id,
+      'SELECT * FROM courses WHERE id IN (SELECT course_id FROM users_courses WHERE user_id = ?) AND status != ?;',
+      [id, 0],
       (error, result) => {
         if (error) throw error;
 
@@ -91,7 +91,7 @@ const courses = (app, pool) => {
         const course_id = result.insertId;
 
         // Guardar las conceptos sencuencialmente
-        course.words.forEach(async (word) => {
+        for (const word of course.words) {
           await query(
             'INSERT INTO courses_data (course_id, concept, answer) VALUES (?, ?, ?)',
             [course_id, word.concept, word.answer],
@@ -99,7 +99,7 @@ const courses = (app, pool) => {
               if (error) throw error;
             }
           );
-        });
+        }
 
         await query(
           'INSERT INTO users_courses (user_id, course_id) VALUES (?, ?)',
@@ -123,10 +123,10 @@ const courses = (app, pool) => {
     pool.query(
       'UPDATE courses SET name = ?, description = ?, image = ?, status = ? WHERE id = ?',
       [course.name, course.description, course.image, course.status, course.id],
-      (error, result) => {
+      async (error, result) => {
         if (error) throw error;
 
-        course.words.forEach(async (word) => {
+        for (const word of course.words) {
           if (word.deleted) {
             await query(
               'UPDATE courses_data SET status = 0 WHERE id = ?',
@@ -152,7 +152,7 @@ const courses = (app, pool) => {
               }
             );
           }
-        });
+        }
 
         response.end();
       }
@@ -164,7 +164,7 @@ const courses = (app, pool) => {
     const id = request.params.id;
 
     pool.query(
-      'UPDATE course SET status = ? WHERE id = ?',
+      'UPDATE courses SET status = ? WHERE id = ?',
       [0, id],
       (error, result) => {
         if (error) throw error;

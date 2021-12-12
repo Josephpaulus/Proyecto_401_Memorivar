@@ -12,7 +12,7 @@
             Creado por:<span>{{ courseOwner }}</span>
           </div>
           <div class="actions">
-            <a mat-button>APRENDER</a>
+            <a mat-button [routerLink]="['/courses/', courseId, 'learn']">APRENDER</a>
             <a mat-button>REPASAR</a>
             <a mat-button [routerLink]="['/courses/', courseId, 'edit']"
               >EDITAR</a

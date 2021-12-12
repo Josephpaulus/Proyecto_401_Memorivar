@@ -1,0 +1,31 @@
+.indication {
+  font-size: 20px;
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.word {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 50px 0 20px;
+  text-align: center;
+}
+
+.answer {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.input {
+  width: 100%;
+}
+
+::ng-deep {
+    .info {
+        border: 0!important;
+    }
+}

@@ -48,4 +48,8 @@ export class CoursesService {
       environment.API_URL + '/courses/user/' + id
     );
   }
+
+  learn(userId: number){
+
+  }
 }

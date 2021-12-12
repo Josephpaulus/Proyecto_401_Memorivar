@@ -1,0 +1,37 @@
+.your-answer-container {
+  border: 1px solid;
+  color: #f23a2f;
+  border-radius: 5px;
+  padding: 10px;
+  width: 50%;
+  margin-bottom: 20px;
+}
+
+.your-answer-container .label {
+  font-size: 13px !important;
+  font-weight: 500;
+  margin-bottom: 5px;
+}
+
+.your-answer-container .your-answer {
+  font-size: 20px;
+  font-weight: 500;
+  word-break: break-word;
+}
+
+.label {
+  text-transform: uppercase;
+  font-size: 11px;
+}
+
+.word {
+  font-size: 20px;
+  font-weight: 500;
+  margin: 10px 0;
+}
+
+.answer {
+  font-size: 15px;
+  font-weight: 500;
+  margin: 10px 0;
+}

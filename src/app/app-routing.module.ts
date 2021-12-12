@@ -4,6 +4,7 @@ import { AddCourseComponent } from './courses/add-course/add-course.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { ExploreCoursesComponent } from './courses/explore-courses/explore-courses.component';
 import { InfoCourseComponent } from './courses/info-course/info-course.component';
+import { LearnCourseComponent } from './courses/learn/learn-course/learn-course.component';
 import { ListCoursesComponent } from './courses/list-courses/list-courses.component';
 import { ViewCourseComponent } from './courses/view-course/view-course.component';
 import { LoginComponent } from './login/login.component';
@@ -66,6 +67,11 @@ const routes: Routes = [
   {
     path: 'courses/:id/edit',
     component: EditCourseComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'courses/:id/learn',
+    component: LearnCourseComponent,
     canActivate: [IsAuthenticatedGuard],
   },
   // error 404

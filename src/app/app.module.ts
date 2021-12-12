@@ -36,6 +36,10 @@ import { ProfileComponent } from './users/profile/profile.component';
 import { ViewCourseComponent } from './courses/view-course/view-course.component';
 import { InfoCourseComponent } from './courses/info-course/info-course.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
+import { LearnCourseComponent } from './courses/learn/learn-course/learn-course.component';
+import { ShowAnswerComponent } from './courses/learn/show-answer/show-answer.component';
+import { ShowAnswerInputComponent } from './courses/learn/show-answer-input/show-answer-input.component';
+import { ShowAnswerErrorComponent } from './courses/learn/show-answer-error/show-answer-error.component';
 
 @NgModule({
   declarations: [
@@ -53,6 +57,10 @@ import { EditCourseComponent } from './courses/edit-course/edit-course.component
     ViewCourseComponent,
     InfoCourseComponent,
     EditCourseComponent,
+    LearnCourseComponent,
+    ShowAnswerComponent,
+    ShowAnswerInputComponent,
+    ShowAnswerErrorComponent,
   ],
   imports: [
     HttpClientModule,
