@@ -1,0 +1,64 @@
+<div class="results-learning">
+  <div class="header">
+    <div class="title">Sesión completa</div>
+  </div>
+  <div class="content">
+    <div class="info">
+      <div class="stats">
+        <div class="correct-answers">
+          <div class="label"><mat-icon>done</mat-icon>Respuestas correctas</div>
+          <div class="value">{{ correctAnswers }}</div>
+          <div class="points">{{ pointsForCorrectAnswers }} pts</div>
+        </div>
+        <div class="speed">
+          <div class="label"><mat-icon>access_time</mat-icon>Velocidad</div>
+          <div class="value">{{ timeSpent }}</div>
+          <div class="points">{{ pointsTimeSpent }} pts</div>
+        </div>
+        <div class="accuracy">
+          <div class="label"><mat-icon>offline_bolt</mat-icon>Precisión</div>
+          <div class="value">{{ accuracy }}%</div>
+          <div class="points">{{ pointsAccuracy }} pts</div>
+        </div>
+        <div class="total-points">
+          <div class="label">Puntos totales</div>
+          <div class="points">{{ totalPoints }} pts</div>
+        </div>
+      </div>
+      <div class="actions">
+        <div class="exit" (click)="exit()">
+          <span class="action">Siguiente</span>
+          <mat-icon>arrow_forward_ios</mat-icon>
+        </div>
+      </div>
+    </div>
+    <div class="concepts">
+      <div class="concepts-head">
+        <div class="concept"><span>Concepto</span></div>
+        <div class="answer"><span>Respuesta</span></div>
+        <div class="accuracy"><span>Precisión</span></div>
+        <div class="time-spent"><span>Tiempo usado</span></div>
+      </div>
+      <div class="concepts-body">
+        <div class="concept" *ngFor="let concept of conceptsLearned">
+          <div class="concept">
+            <span>{{ concept.concept.concept }}</span>
+          </div>
+          <div class="answer">
+            <span>{{ concept.concept.answer }}</span>
+          </div>
+          <div class="accuracy">
+            <span
+              >{{ concept.correct_answers }}/{{
+                concept.correct_answers + concept.attempts
+              }}</span
+            >
+          </div>
+          <div class="time-spent">
+            <span>{{ secondsToTime(concept.time_spent) }}</span>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+</div>

@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { CoursesService } from '../courses.service';
-import { Words, AddCourse, course } from '../courses';
+import { Words, course } from '../courses';
 import { Router } from '@angular/router';
 import { UsersService } from 'src/app/users/users.service';
 import { user } from 'src/app/users/users';
@@ -12,8 +12,8 @@ import { user } from 'src/app/users/users';
   styleUrls: ['./add-course.component.scss'],
 })
 export class AddCourseComponent implements OnInit {
-  user!: user
-  
+  user!: user;
+
   // datos del curso
   nameInput: string = '';
   descriptionInput: string = '';
@@ -34,7 +34,11 @@ export class AddCourseComponent implements OnInit {
   @ViewChild('wordInput') wordInput!: ElementRef;
   @ViewChild('answerInput') answerInput!: ElementRef;
 
-  constructor(private UsersService: UsersService, private CoursesService: CoursesService, private router: Router) {
+  constructor(
+    private UsersService: UsersService,
+    private CoursesService: CoursesService,
+    private router: Router
+  ) {
     this.user = this.UsersService.getCurrentUser();
   }
 
@@ -102,6 +106,7 @@ export class AddCourseComponent implements OnInit {
 
   create() {
     const course: course = {
+      id: -1,
       user_id: this.user.id,
       name: this.nameInput,
       description: this.descriptionInput,

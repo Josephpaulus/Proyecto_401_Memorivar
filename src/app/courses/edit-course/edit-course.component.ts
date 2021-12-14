@@ -1,7 +1,7 @@
 import { Component, ElementRef, OnInit, ViewChild } from '@angular/core';
 import { MatTable } from '@angular/material/table';
 import { CoursesService } from '../courses.service';
-import { Words, AddCourse, course } from '../courses';
+import { Words, course } from '../courses';
 import { ActivatedRoute, Router } from '@angular/router';
 import { user } from 'src/app/users/users';
 import { UsersService } from 'src/app/users/users.service';
@@ -141,13 +141,13 @@ export class EditCourseComponent implements OnInit {
 
     console.table(course.words);
 
-    this.CoursesService.update(course).subscribe((res) => {
+    this.CoursesService.update(course).subscribe(() => {
       this.router.navigate(['./courses/', this.courseId, 'info']);
     });
   }
 
   delete() {
-    this.CoursesService.delete(this.courseId).subscribe((res) => {
+    this.CoursesService.delete(this.courseId).subscribe(() => {
       this.router.navigate(['./courses']);
     });
   }

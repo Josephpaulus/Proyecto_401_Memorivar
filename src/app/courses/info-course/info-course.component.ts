@@ -4,6 +4,8 @@ import { ActivatedRoute } from '@angular/router';
 import { course, Words } from '../courses';
 import { CoursesService } from '../courses.service';
 import { UsersService } from '../../users/users.service';
+import { user } from 'src/app/users/users';
+import { Router } from '@angular/router';
 
 @Component({
   selector: 'app-info-course',
@@ -19,13 +21,19 @@ export class InfoCourseComponent implements OnInit {
   courseId!: number;
   course!: course;
 
+  user!: user;
+
   courseOwner!: string;
+
+  isOwner: boolean = false;
 
   constructor(
     private route: ActivatedRoute,
+    private router: Router,
     private CoursesService: CoursesService,
     private UsersService: UsersService
   ) {
+    this.user = this.UsersService.getCurrentUser();
     this.courseId = this.route.snapshot.params.id;
 
     this.CoursesService.getCourse(this.courseId).subscribe((course) => {
@@ -39,9 +47,27 @@ export class InfoCourseComponent implements OnInit {
 
       this.UsersService.getUser(course.user_id).subscribe((user) => {
         this.courseOwner = user.user;
+
+        if (user.id === this.user.id) {
+          this.isOwner = true;
+        }
       });
     });
   }
 
   ngOnInit(): void {}
+
+  unjoin() {
+    this.CoursesService.unjoin(this.user.id, this.courseId).subscribe(() => {
+      this.router.navigate(['/courses']);
+    });
+  }
+
+  restartProgress() {
+    this.CoursesService.restartProgress(this.user.id, this.courseId).subscribe(
+      () => {
+        this.router.navigate(['/courses']);
+      }
+    );
+  }
 }

@@ -1,31 +1,49 @@
 <div class="wrapper">
   <div class="learn-course">
-    <div class="header">
-      <div class="title">Sesión 1</div>
-      <div class="close">
+    <div class="header" *ngIf="currentView !== View.results">
+      <div class="title">Sesión {{ currentSession + 1 }}</div>
+      <div class="close" (click)="exit()">
         <mat-icon>close</mat-icon>
       </div>
     </div>
-    <div class="content">
+    <div class="content" *ngIf="currentView !== View.results">
       <div class="info">
         <mat-progress-bar
           class="progress"
           mode="determinate"
-          value="50"
+          value="{{ progress }}"
         ></mat-progress-bar>
-        <app-show-answer *ngIf="showAnswer"></app-show-answer>
-        <app-show-answer-input *ngIf="showInput"></app-show-answer-input>
-        <app-show-answer-error *ngIf="showError"></app-show-answer-error>
+        <app-show-answer
+          [concept]="concept"
+          [answer]="answer"
+          *ngIf="currentView === View.answer"
+        ></app-show-answer>
+        <app-show-answer-input
+          (messageEvent)="checkAnswer($event)"
+          [concept]="concept"
+          [answer]="answer"
+          *ngIf="currentView === View.input"
+        ></app-show-answer-input>
+        <app-show-answer-error
+          [concept]="concept"
+          [answer]="answer"
+          [answerInput]="answerInput"
+          *ngIf="currentView === View.error"
+        ></app-show-answer-error>
       </div>
       <div class="more-info">
         <div class="points">
-          <span>0</span>
+          <span>{{ points }}</span>
         </div>
-        <div class="next">
+        <div class="next" (click)="next()">
           <mat-icon>chevron_right</mat-icon>
-          <span class="action">Siguiente</span>
+          <span class="action">{{ action }}</span>
         </div>
       </div>
     </div>
+    <app-results-learning
+      [conceptsLearned]="conceptsLearned"
+      *ngIf="currentView === View.results"
+    ></app-results-learning>
   </div>
 </div>

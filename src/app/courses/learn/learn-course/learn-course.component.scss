@@ -8,7 +8,7 @@
     width: 100%;
     background: hsl(249deg 30% 21%);
     display: flex;
-    padding: 20px 10px;
+    padding: 20px 0;
     justify-content: space-between;
     box-shadow: 0px 5px 5px -3px rgb(0 0 0 / 20%),
       0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
@@ -68,6 +68,9 @@
         background-color: #307bff;
         border-radius: 2px;
         padding: 5px 0;
+        display: flex;
+        flex-direction: column;
+        align-items: center;
         cursor: pointer;
 
         .mat-icon {
@@ -83,6 +86,12 @@
       }
     }
   }
+}
+
+app-results-learning {
+  width: 100%;
+  display: flex;
+  justify-content: center;
 }
 
 mat-progress-bar {

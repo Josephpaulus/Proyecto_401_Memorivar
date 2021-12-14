@@ -12,9 +12,20 @@
             Creado por:<span>{{ courseOwner }}</span>
           </div>
           <div class="actions">
-            <a mat-button [routerLink]="['/courses/', courseId, 'learn']">APRENDER</a>
+            <a class="delete" mat-button (click)="unjoin()">
+              <mat-icon matSuffix>exit_to_app</mat-icon>
+            </a>
+            <a class="restart" mat-button (click)="restartProgress()">
+              <mat-icon matSuffix>restore</mat-icon>
+            </a>
+            <a mat-button [routerLink]="['/courses/', courseId, 'learn']"
+              >APRENDER</a
+            >
             <a mat-button>REPASAR</a>
-            <a mat-button [routerLink]="['/courses/', courseId, 'edit']"
+            <a
+              *ngIf="isOwner"
+              mat-button
+              [routerLink]="['/courses/', courseId, 'edit']"
               >EDITAR</a
             >
           </div>

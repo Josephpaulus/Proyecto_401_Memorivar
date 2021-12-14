@@ -16,14 +16,12 @@ export class ExploreCoursesComponent implements OnInit {
     this.CoursesService.explore().subscribe((courses) => {
       for (const course of courses) {
         if (!course.image) {
-          course.image = 'https://www.welivesecurity.com/wp-content/uploads/2018/04/cursos-online-gratuitos-seguridad-inform%C3%A1tica.jpg';
+          course.image =
+            'https://www.welivesecurity.com/wp-content/uploads/2018/04/cursos-online-gratuitos-seguridad-inform%C3%A1tica.jpg';
         }
       }
+
       this.courses = courses;
     });
-  }
-
-  showCourse(course: course) {
-    console.log(course);
   }
 }

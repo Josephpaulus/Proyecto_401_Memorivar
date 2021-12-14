@@ -4,8 +4,8 @@ const users = (app, pool) => {
     const user = request.body;
 
     pool.query(
-      'SELECT id, rol_id, user, email, image FROM users WHERE user = ? AND password = ? AND status = 1',
-      [user.user, user.password],
+      'SELECT id, rol_id, user, email, image FROM users WHERE user = ? AND password = ? AND status = ?',
+      [user.user, user.password, 1],
       (error, result) => {
         if (error) throw error;
 

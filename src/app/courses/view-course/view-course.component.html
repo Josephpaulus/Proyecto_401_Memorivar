@@ -2,18 +2,17 @@
   <div class="view-course">
     <div class="header">
       <div class="image">
-        <img
-          src="{{ course?.image }}"
-          alt=""
-        />
+        <img src="{{ course?.image }}" alt="" />
       </div>
       <div class="info-content">
-        <div class="name">{{course?.name}}</div>
-        <div class="description">{{course?.description}}</div>
+        <div class="name">{{ course?.name }}</div>
+        <div class="description">{{ course?.description }}</div>
         <div class="more-info">
-          <div class="owner">Creado por:<span>{{courseOwner}}</span></div>
+          <div class="owner">
+            Creado por:<span>{{ courseOwner }}</span>
+          </div>
           <div class="actions">
-            <a mat-button>EMPEZAR</a>
+            <a (click)="joinCourse()" mat-button>{{ join }}</a>
           </div>
         </div>
       </div>

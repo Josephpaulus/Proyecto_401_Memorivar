@@ -7,49 +7,29 @@
       <div class="content">
         <div class="info">
           <div class="name">{{ course.name }}</div>
-          <!-- <div class="advance">
-            {{ course.wordsLearned }}/{{ course.totalWords }} palabras
+          <div class="advance">
+            {{ course.conceptsLearned }}/{{ course.totalConcepts }} palabras
             aprendidas
-          </div> -->
-          <div class="advance">...</div>
+          </div>
         </div>
-        <!-- <mat-progress-bar
+        <mat-progress-bar
           mode="determinate"
           value="{{ course.progress }}"
-        ></mat-progress-bar> -->
-        <mat-progress-bar mode="determinate" value="0"></mat-progress-bar>
+        ></mat-progress-bar>
         <div class="info">
           <div class="review">...</div>
           <!-- <div class="review">Repasar en {{ course.reviewIn }} hora (s)</div> -->
           <div class="actions">
-            <a mat-button>APRENDER</a>
+            <a mat-button [routerLink]="['/courses/', course.id, 'learn']"
+              >APRENDER</a
+            >
             <a mat-button>REPASAR</a>
-            <a mat-button [routerLink]="['/courses/', course.id, 'info']">VER</a>
+            <a mat-button [routerLink]="['/courses/', course.id, 'info']"
+              >VER</a
+            >
           </div>
         </div>
       </div>
     </div>
-    <!-- <div class="course">
-      <div class="image">
-        <img
-          src="https://material.angularjs.org/1.1.1/img/list/60.jpeg"
-          alt=""
-        />
-      </div>
-      <div class="content">
-        <div class="info">
-          <div class="name">Curso #1</div>
-          <div class="advance">18/16 palabras aprendidas</div>
-        </div>
-        <mat-progress-bar mode="determinate" value="40"></mat-progress-bar>
-        <div class="info">
-          <div class="review">Repasar en x horas</div>
-          <div class="actions">
-            <a mat-button>REPASAR</a>
-            <a mat-button>APRENDER</a>
-          </div>
-        </div>
-      </div>
-    </div> -->
   </div>
 </div>
