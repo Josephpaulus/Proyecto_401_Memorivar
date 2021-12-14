@@ -21,6 +21,7 @@ export enum View {
   input,
   error,
   results,
+  msg,
 }
 
 export enum Answer {

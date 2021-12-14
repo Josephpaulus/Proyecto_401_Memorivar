@@ -88,10 +88,13 @@
   }
 }
 
-app-results-learning {
+app-results-learning,
+app-msg-learn {
   width: 100%;
   display: flex;
   justify-content: center;
+  align-items: center;
+  flex-direction: column;
 }
 
 mat-progress-bar {

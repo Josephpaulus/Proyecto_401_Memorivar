@@ -60,6 +60,8 @@ export class LearnCourseComponent implements OnInit {
 
   points: number = 0;
 
+  msg: string = '';
+
   constructor(
     private UsersService: UsersService,
     private LearnService: LearnService,
@@ -104,7 +106,8 @@ export class LearnCourseComponent implements OnInit {
     console.log(concepts, conceptsLearned);
 
     if (concepts.length == 0) {
-      console.log('no hay mas conceptos para aprender');
+      this.msg = 'No hay más conceptos para aprender';
+      this.view = View.msg;
       return;
     }
 
@@ -290,9 +293,9 @@ export class LearnCourseComponent implements OnInit {
           concept.attempts += this.attempts;
           concept.time_spent += this.getTimeSpent();
 
-          this.LearnService.updateLearnedConcept(concept);
+          this.LearnService.updateLearnedConcept(concept).toPromise();
         } else {
-          this.LearnService.addLearnedConcept(learnedConcept);
+          this.LearnService.addLearnedConcept(learnedConcept).toPromise();
 
           this.conceptsLearned.push(learnedConcept);
         }

@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="learn-course">
+  <div class="learn-course" *ngIf="currentView !== View.msg">
     <div class="header" *ngIf="currentView !== View.results">
       <div class="title">Sesión {{ currentSession + 1 }}</div>
       <div class="close" (click)="exit()">
@@ -46,4 +46,5 @@
       *ngIf="currentView === View.results"
     ></app-results-learning>
   </div>
+  <app-msg-learn [msg]="msg" *ngIf="currentView === View.msg"></app-msg-learn>
 </div>

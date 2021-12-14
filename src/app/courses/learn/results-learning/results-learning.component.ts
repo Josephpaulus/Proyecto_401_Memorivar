@@ -64,7 +64,7 @@ export class ResultsLearningComponent implements OnInit {
       this.conceptsLearned[0].user_id,
       this.conceptsLearned[0].concept.course_id,
       this.totalPoints
-    );
+    ).toPromise();
   }
 
   exit() {

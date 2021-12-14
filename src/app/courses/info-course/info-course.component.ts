@@ -66,7 +66,7 @@ export class InfoCourseComponent implements OnInit {
   restartProgress() {
     this.CoursesService.restartProgress(this.user.id, this.courseId).subscribe(
       () => {
-        this.router.navigate(['/courses']);
+        window.location.reload();
       }
     );
   }

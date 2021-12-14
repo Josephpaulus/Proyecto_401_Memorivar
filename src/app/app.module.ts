@@ -39,6 +39,7 @@ import { ShowAnswerComponent } from './courses/learn/show-answer/show-answer.com
 import { ShowAnswerInputComponent } from './courses/learn/show-answer-input/show-answer-input.component';
 import { ShowAnswerErrorComponent } from './courses/learn/show-answer-error/show-answer-error.component';
 import { ResultsLearningComponent } from './courses/learn/results-learning/results-learning.component';
+import { MsgLearnComponent } from './courses/learn/msg-learn/msg-learn.component';
 
 @NgModule({
   declarations: [
@@ -61,6 +62,7 @@ import { ResultsLearningComponent } from './courses/learn/results-learning/resul
     ShowAnswerInputComponent,
     ShowAnswerErrorComponent,
     ResultsLearningComponent,
+    MsgLearnComponent,
   ],
   imports: [
     HttpClientModule,
