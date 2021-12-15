@@ -14,7 +14,7 @@
       0px 8px 10px 1px rgb(0 0 0 / 14%), 0px 3px 14px 2px rgb(0 0 0 / 12%);
 
     .image {
-      width: 20%;
+      width: 110px;
       text-align: center;
       display: flex;
       justify-content: center;
@@ -83,11 +83,21 @@
   }
 
   .content {
-    width: 80%;
-    margin-top: 20px;
+    width: 60%;
+    margin: 20px 0;
 
     table {
       width: 100%;
+
+      th:nth-child(-n + 2),
+      tr td:nth-child(-n + 2) {
+        width: 40%;
+      }
+
+      th:last-child,
+      tr td:last-child {
+        width: 20%;
+      }
     }
   }
 }

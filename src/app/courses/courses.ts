@@ -13,6 +13,7 @@ export interface Words {
   concept: string;
   answer: string;
   deleted?: boolean;
+  timeReview?: number;
 }
 
 export interface ListCourses extends course {

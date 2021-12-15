@@ -1,5 +1,6 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
+import { take } from 'rxjs/operators';
 import { user } from 'src/app/users/users';
 import { UsersService } from 'src/app/users/users.service';
 import { Action, Answer, Concept, LearnedConcept, View } from '../learn';
@@ -62,6 +63,8 @@ export class LearnCourseComponent implements OnInit {
 
   msg: string = '';
 
+  review: boolean = false;
+
   constructor(
     private UsersService: UsersService,
     private LearnService: LearnService,
@@ -70,6 +73,7 @@ export class LearnCourseComponent implements OnInit {
   ) {
     this.user = this.UsersService.getCurrentUser();
     this.courseId = this.route.snapshot.params.id;
+    this.review = this.route.snapshot.data.review;
 
     this.LearnService.getConcepts(this.courseId).subscribe((concepts) => {
       this.concepts = concepts;
@@ -84,7 +88,11 @@ export class LearnCourseComponent implements OnInit {
 
         console.log(this.conceptsLearnedBD);
 
-        this.startSession();
+        if (this.review) {
+          this.startReview();
+        } else {
+          this.startSession();
+        }
       });
     });
   }
@@ -206,6 +214,51 @@ export class LearnCourseComponent implements OnInit {
     this.updateProgress();
   }
 
+  startReview() {
+    const conceptsLearned = this.conceptsLearnedBD;
+    const expiredConcepts = [];
+
+    for (let i = 0; i < conceptsLearned.length; i++) {
+      const conceptLearned = conceptsLearned[i];
+
+      if (conceptLearned.learned) {
+        const concept: LearnedConcept = {
+          concept: this.concepts[i],
+          user_id: conceptLearned.user_id,
+          correct_answers: conceptLearned.correct_answers,
+          learned: conceptLearned.learned,
+          attempts: conceptLearned.attempts,
+          time_spent: conceptLearned.time_spent,
+          time_review: conceptLearned.time_review,
+        };
+
+        if (conceptLearned.time_review <= this.getTime()) {
+          if (this.startConcept === -1) {
+            this.startConcept = i;
+          }
+
+          expiredConcepts.push(concept);
+        } else {
+          this.conceptsLearned.push(concept);
+        }
+      }
+    }
+
+    if (expiredConcepts.length !== 0) {
+      this.conceptsLearned = expiredConcepts;
+    }
+
+    this.totalTransactions = this.conceptsLearned.length;
+
+    this.currentConcept = this.startConcept !== -1 ? this.startConcept : 0;
+
+    this.updateConcept();
+
+    this.startTime = this.getTime();
+
+    this.view = View.input;
+  }
+
   updateConcept() {
     this.concept = this.concepts[this.currentConcept].concept;
     this.answer = this.concepts[this.currentConcept].answer;
@@ -287,13 +340,26 @@ export class LearnCourseComponent implements OnInit {
 
           const concept = this.conceptsLearned[index];
 
-          concept.correct_answers++;
-          concept.learned =
+          if (!this.review) {
+            concept.correct_answers++;
+            concept.attempts += this.attempts;
+            concept.time_spent += this.getTimeSpent();
+          }
+
+          const learned =
             concept.correct_answers === this.LearnService.correctAnswers;
-          concept.attempts += this.attempts;
-          concept.time_spent += this.getTimeSpent();
+
+          concept.learned = learned;
+
+          concept.time_review = learned ? this.getTime() + 30 : 0;
 
           this.LearnService.updateLearnedConcept(concept).toPromise();
+
+          if (this.review) {
+            concept.correct_answers = 1;
+            concept.attempts += this.attempts;
+            concept.time_spent = this.getTimeSpent();
+          }
         } else {
           this.LearnService.addLearnedConcept(learnedConcept).toPromise();
 
@@ -308,7 +374,10 @@ export class LearnCourseComponent implements OnInit {
         this.currentTransaction++;
         this.updateProgress();
 
-        if (this.conceptsLearned[this.currentConcept].correct_answers > 1) {
+        if (
+          !this.review &&
+          this.conceptsLearned[this.currentConcept].correct_answers > 1
+        ) {
           this.conceptShown = true;
         }
 
@@ -322,7 +391,10 @@ export class LearnCourseComponent implements OnInit {
 
           this.currentConcept = this.startConcept;
 
-          if (this.conceptsLearned[this.currentConcept].correct_answers === 1) {
+          if (
+            !this.review &&
+            this.conceptsLearned[this.currentConcept].correct_answers === 1
+          ) {
             this.conceptShown = true;
           }
         } else {
@@ -331,7 +403,7 @@ export class LearnCourseComponent implements OnInit {
 
         this.updateConcept();
 
-        if (this.conceptShown) {
+        if (this.conceptShown || this.review) {
           this.view = View.init;
 
           setTimeout(() => {

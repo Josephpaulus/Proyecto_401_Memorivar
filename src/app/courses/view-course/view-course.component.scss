@@ -71,11 +71,16 @@
   }
 
   .content {
-    width: 80%;
-    margin-top: 20px;
+    width: 60%;
+    margin: 20px 0;
 
     table {
       width: 100%;
+
+      th,
+      tr td {
+        width: 50%;
+      }
     }
   }
 }

@@ -21,7 +21,9 @@
             <a mat-button [routerLink]="['/courses/', courseId, 'learn']"
               >APRENDER</a
             >
-            <a mat-button>REPASAR</a>
+            <a mat-button [routerLink]="['/courses/', courseId, 'review']"
+              >REPASAR</a
+            >
             <a
               *ngIf="isOwner"
               mat-button
@@ -48,8 +50,8 @@
           <td mat-cell *matCellDef="let element">{{ element.answer }}</td>
         </ng-container>
         <ng-container matColumnDef="review">
-          <th mat-header-cell *matHeaderCellDef>Repasar en</th>
-          <td mat-cell *matCellDef="let element">{{ element.answer }}</td>
+          <th mat-header-cell *matHeaderCellDef>Repasar</th>
+          <td mat-cell *matCellDef="let element">{{ reviewIn(element.timeReview) }}</td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>
         <tr mat-row *matRowDef="let row; columns: displayedColumns"></tr>

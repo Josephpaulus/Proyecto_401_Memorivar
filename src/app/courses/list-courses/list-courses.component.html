@@ -17,13 +17,19 @@
           value="{{ course.progress }}"
         ></mat-progress-bar>
         <div class="info">
-          <div class="review">...</div>
-          <!-- <div class="review">Repasar en {{ course.reviewIn }} hora (s)</div> -->
+          <div class="review">
+            <div *ngIf="reviewIn(course.reviewTime) !== '-'">
+              Repasar en {{ reviewIn(course.reviewTime) }}
+            </div>
+            <div></div>
+          </div>
           <div class="actions">
             <a mat-button [routerLink]="['/courses/', course.id, 'learn']"
               >APRENDER</a
             >
-            <a mat-button>REPASAR</a>
+            <a mat-button [routerLink]="['/courses/', course.id, 'review']"
+              >REPASAR</a
+            >
             <a mat-button [routerLink]="['/courses/', course.id, 'info']"
               >VER</a
             >

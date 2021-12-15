@@ -47,12 +47,51 @@ export class ListCoursesComponent implements OnInit {
       (concept) => concept.learned
     ).length;
 
-    this.courses.push({
+    let reviewIn = Math.max(
+      ...learnedConcepts.map((concept) => concept.time_review)
+    );
+
+    const courseView = {
       ...course,
       conceptsLearned: totalLearnedConcepts,
       totalConcepts: concepts.length,
       progress: Math.floor((totalLearnedConcepts / concepts.length) * 100),
-      reviewTime: 0,
-    });
+      reviewTime: reviewIn,
+    };
+
+    this.courses.push(courseView);
+
+    setInterval(() => {
+      courseView.reviewTime = reviewIn;
+    }, 1000);
+  }
+
+  reviewIn(timeReview: number) {
+    if (
+      timeReview === 0 ||
+      isNaN(timeReview) ||
+      Math.abs(timeReview) === Infinity
+    ) {
+      return '-';
+    } else if (timeReview <= this.getTime()) {
+      return 'YA';
+    } else {
+      return this.secondsToTime(timeReview - this.getTime());
+    }
+  }
+
+  getTime() {
+    return Math.round(Date.now() / 1000);
+  }
+
+  secondsToTime(seconds: number): string {
+    let m = Math.floor((seconds % 3600) / 60)
+        .toString()
+        .padStart(2, '0'),
+      s = Math.floor(seconds % 60)
+        .toString()
+        .padStart(2, '0');
+
+    return `${m}m ${s}s`;
   }
 }

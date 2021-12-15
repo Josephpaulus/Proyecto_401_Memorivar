@@ -227,12 +227,13 @@ const courses = (app, pool) => {
     const concept = request.body;
 
     pool.query(
-      'UPDATE users_data SET correct_answers = ?, learned = ?, attempts = ?, time_spent = ? WHERE user_id = ? AND course_id = ? AND concept_id = ?',
+      'UPDATE users_data SET correct_answers = ?, learned = ?, attempts = ?, time_spent = ?, time_review = ? WHERE user_id = ? AND course_id = ? AND concept_id = ?',
       [
         concept.correct_answers,
         concept.learned,
         concept.attempts,
         concept.time_spent,
+        concept.time_review,
         concept.user_id,
         concept.concept.course_id,
         concept.concept.id,

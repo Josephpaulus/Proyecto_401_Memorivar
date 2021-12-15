@@ -74,6 +74,14 @@ const routes: Routes = [
     component: LearnCourseComponent,
     canActivate: [IsAuthenticatedGuard],
   },
+  {
+    path: 'courses/:id/review',
+    component: LearnCourseComponent,
+    canActivate: [IsAuthenticatedGuard],
+    data: {
+      review: true,
+    },
+  },
   // error 404
   {
     path: '**',
