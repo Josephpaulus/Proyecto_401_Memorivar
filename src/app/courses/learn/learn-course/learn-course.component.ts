@@ -101,6 +101,9 @@ export class LearnCourseComponent implements OnInit {
 
   startSession() {
     this.conceptsLearned = [];
+    this.totalTransactions = 0;
+    this.currentTransaction = 0;
+    this.points = 0;
 
     const start = this.currentSession * this.LearnService.conceptsPerSession;
     const end =

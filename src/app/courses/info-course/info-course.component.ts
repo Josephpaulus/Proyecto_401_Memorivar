@@ -94,7 +94,7 @@ export class InfoCourseComponent implements OnInit {
   }
 
   reviewIn(timeReview: number) {
-    if (timeReview === 0) {
+    if (timeReview === 0 || timeReview === undefined) {
       return '-';
     } else if (timeReview <= this.getTime()) {
       return 'YA';
