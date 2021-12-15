@@ -251,6 +251,12 @@ export class LearnCourseComponent implements OnInit {
       this.conceptsLearned = expiredConcepts;
     }
 
+    if (this.conceptsLearned.length === 0) {
+      this.msg = 'No hay conceptos aprendidos para revisar';
+      this.view = View.msg;
+      return;
+    }
+
     this.totalTransactions = this.conceptsLearned.length;
 
     this.currentConcept = this.startConcept !== -1 ? this.startConcept : 0;
