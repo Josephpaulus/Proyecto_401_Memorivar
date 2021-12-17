@@ -24,4 +24,15 @@ export class ExploreCoursesComponent implements OnInit {
       this.courses = courses;
     });
   }
+
+  secondsToTime(seconds: number): string {
+    let m = Math.floor((seconds % 3600) / 60)
+        .toString()
+        .padStart(2, '0'),
+      s = Math.floor(seconds % 60)
+        .toString()
+        .padStart(2, '0');
+
+    return `${m}m ${s}s`;
+  }
 }

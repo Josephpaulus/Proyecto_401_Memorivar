@@ -154,6 +154,14 @@ table {
         background-color: #307bff;
       }
     }
+
+    &:active .mat-radio-persistent-ripple {
+      background-color: #307bff;
+    }
+
+    .mat-radio-ripple .mat-ripple-element:not(.mat-radio-persistent-ripple) {
+      background-color: #307bff;
+    }
   }
 
   .mat-radio-label-content {

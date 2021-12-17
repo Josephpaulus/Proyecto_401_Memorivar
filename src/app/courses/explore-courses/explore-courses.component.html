@@ -7,8 +7,25 @@
       <div class="content">
         <div class="name">{{ course.name }}</div>
         <div class="description">{{ course.description }}</div>
-        <div class="actions">
-          <a mat-button [routerLink]="['/courses/', course.id]">Ver</a>
+        <div class="info-content">
+          <div class="info">
+            <div class="users">
+              <mat-icon>supervisor_account</mat-icon>
+              {{ course.users }}
+            </div>
+            <div class="concepts">
+              <mat-icon>g_translate</mat-icon>
+              {{ course.concepts }}
+            </div>
+            <div class="time">
+              <mat-icon>access_time</mat-icon>
+              {{ secondsToTime((course.concepts || 0) * 15) }}
+            </div>
+            <div class="owner">{{ course.owner }}</div>
+          </div>
+          <div class="actions">
+            <a mat-button [routerLink]="['/courses/', course.id]">Ver</a>
+          </div>
         </div>
       </div>
     </div>

@@ -36,17 +36,58 @@
         margin-bottom: 5px;
       }
 
-      .actions {
+      .info-content {
         display: flex;
-        justify-content: end;
+        justify-content: space-between;
 
-        .mat-button {
-          background-color: #307bff;
-          margin: 0 10px;
-          border-radius: 20px !important;
+        .info {
+          display: flex;
+          position: relative;
+          top: 5px;
 
-          &:last-child {
-            margin-right: 0;
+          > div {
+            display: flex;
+            align-items: center;
+            margin-right: 15px;
+          }
+
+          .mat-icon {
+            margin-right: 3px;
+          }
+
+          .time {
+            margin: 0;
+          }
+
+          .owner {
+            border-left: 1px solid;
+            margin-left: 7px;
+            padding-left: 7px;
+            font-weight: 500;
+          }
+
+          .concepts,
+          .time {
+            .mat-icon {
+              font-size: 20px;
+              height: 20px;
+              width: 20px;
+            }
+          }
+        }
+
+        .actions {
+          display: flex;
+          justify-content: end;
+
+          .mat-button {
+            background-color: #307bff;
+            margin: 0 10px;
+            border-radius: 20px !important;
+
+            &:last-child {
+              margin-right: 0;
+            }
           }
         }
       }

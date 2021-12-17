@@ -6,6 +6,9 @@ export interface course {
   image: string;
   words: Words[];
   status: number;
+  users?: number;
+  concepts?: number;
+  owner?: string;
 }
 
 export interface Words {

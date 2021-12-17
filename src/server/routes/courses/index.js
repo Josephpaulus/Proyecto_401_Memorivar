@@ -27,11 +27,28 @@ const courses = (app, pool) => {
   // 1 = privado
   // 0 = eliminado
   app.get('/courses', (request, response) => {
-    pool.query('SELECT * FROM courses WHERE status = ?', 2, (error, result) => {
-      if (error) throw error;
+    pool.query(
+      `
+  SELECT 
+    c.id,
+    c.name, 
+    c.description, 
+    c.image, 
+    u.user AS owner, 
+    (SELECT COUNT(*) FROM users_courses WHERE course_id = c.id AND status = ?) AS users,
+    (SELECT COUNT(*) FROM courses_data WHERE course_id = c.id AND status = ?) AS concepts
+  FROM courses c 
+    JOIN users u 
+      ON u.id = c.user_id 
+  WHERE c.status = ?
+  ORDER BY users DESC`,
+      [1, 1, 2],
+      (error, result) => {
+        if (error) throw error;
 
-      response.send(result);
-    });
+        response.send(result);
+      }
+    );
   });
 
   // Obtener un curso
