@@ -60,10 +60,13 @@ export class EditCourseComponent implements OnInit {
   ngOnInit(): void {}
 
   addWord() {
-    if (
-      this.wordInput.nativeElement.value == '' ||
-      this.answerInput.nativeElement.value == ''
-    ) {
+    if (this.wordInput.nativeElement.value == '') {
+      this.wordInput.nativeElement.focus();
+      return;
+    }
+
+    if (this.answerInput.nativeElement.value == '') {
+      this.answerInput.nativeElement.focus();
       return;
     }
 

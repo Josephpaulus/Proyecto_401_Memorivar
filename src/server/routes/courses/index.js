@@ -375,7 +375,7 @@ const courses = (app, pool) => {
     const id = request.params.id;
 
     pool.query(
-      'SELECT u.id, u.user, u.image, uc.points FROM users_courses AS uc JOIN users as u ON u.id = uc.user_id WHERE uc.course_id = ? AND uc.status = ?',
+      'SELECT u.id, u.user, u.image, uc.points FROM users_courses AS uc JOIN users AS u ON u.id = uc.user_id WHERE uc.course_id = ? AND uc.status = ?',
       [id, 1],
       (error, result) => {
         if (error) throw error;
