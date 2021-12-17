@@ -1,7 +1,7 @@
 <mat-toolbar>
   <mat-toolbar-row class="header">
     <h1 class="title"><a routerLink="/">MEMORIVAR</a></h1>
-    <div class="nav">
+    <div class="nav" *ngIf="showNavbar">
       <a routerLink="/courses" mat-button>Home</a>
       <a routerLink="/explore" mat-button>Explorar</a>
       <a routerLink="/courses/add" mat-button>Crear curso</a>

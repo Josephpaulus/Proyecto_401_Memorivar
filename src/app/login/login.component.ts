@@ -59,13 +59,11 @@ export class LoginComponent implements OnInit {
 
     this.UsersService.login(data).subscribe((res) => {
       if (res.success) {
-        this.snackBar.open(
-          'Login exitoso',
-          '',
-          this.snackBarDefault
-        );
+        this.snackBar.open('Login exitoso', '', this.snackBarDefault);
 
         this.router.navigate(['./courses']);
+
+        window.location.reload();
       } else {
         this.snackBar.open(
           'Usuario y/o contraseña equivocados',

@@ -1,4 +1,5 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
+import { UsersService } from '../users/users.service';
 
 @Component({
   selector: 'app-header',
@@ -7,8 +8,15 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 })
 export class HeaderComponent implements OnInit {
   isOpenMenu: boolean = false;
+  showNavbar: boolean = false;
 
-  constructor() {}
+  constructor(private UsersService: UsersService) {
+    const user = this.UsersService.getCurrentUser();
+
+    if (user) {
+      this.showNavbar = true;
+    }
+  }
 
   ngOnInit(): void {}
 
