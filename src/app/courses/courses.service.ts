@@ -62,4 +62,10 @@ export class CoursesService {
       courseId,
     });
   }
+
+  getUsersCourse(courseId: number): Observable<any> {
+    return this.http.get<any>(
+      environment.API_URL + '/courses/' + courseId + '/users'
+    );
+  }
 }

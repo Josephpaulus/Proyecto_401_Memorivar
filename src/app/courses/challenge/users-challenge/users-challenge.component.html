@@ -1,0 +1,40 @@
+<div class="wrapper">
+  <div class="users-challenge" *ngIf="showUsers">
+    <div class="title">
+      <h1>Selecciona a un oponente</h1>
+    </div>
+    <div class="content">
+      <div class="users">
+        <div
+          class="user"
+          *ngFor="let user of users"
+          (click)="challenge(user.id)"
+        >
+          <div class="user-info">
+            <div class="user-image">
+              <img src="{{ user.image }}" alt="" />
+            </div>
+            <div class="user-info-container">
+              <div class="user-name">
+                <span>{{ user.user }}</span>
+              </div>
+              <div class="user-points">
+                <span>{{ user.points }} puntos</span>
+              </div>
+            </div>
+          </div>
+          <div class="user-actions">
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <div class="no-users" *ngIf="!showUsers">
+    <h1>No hay usuarios para desafiar</h1>
+    <a mat-button (click)="back()">
+      <mat-icon>keyboard_return</mat-icon>
+      Regresar
+    </a>
+  </div>
+</div>

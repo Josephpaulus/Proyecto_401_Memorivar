@@ -1,4 +1,4 @@
-.info-course {
+.challenge {
   display: flex;
   align-items: center;
   flex-direction: column;
@@ -103,5 +103,14 @@
         width: 20%;
       }
     }
+  }
+}
+
+.no-history {
+  h2 {
+    color: #fff;
+    position: relative;
+    top: 50px;
+    text-align: center;
   }
 }

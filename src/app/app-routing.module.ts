@@ -1,6 +1,8 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
+import { ChallengeComponent } from './courses/challenge/challenge/challenge.component';
+import { UsersChallengeComponent } from './courses/challenge/users-challenge/users-challenge.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
 import { ExploreCoursesComponent } from './courses/explore-courses/explore-courses.component';
 import { InfoCourseComponent } from './courses/info-course/info-course.component';
@@ -8,8 +10,6 @@ import { LearnCourseComponent } from './courses/learn/learn-course/learn-course.
 import { ListCoursesComponent } from './courses/list-courses/list-courses.component';
 import { ViewCourseComponent } from './courses/view-course/view-course.component';
 import { LoginComponent } from './login/login.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
-import { SignupComponent } from './signup/signup.component';
 import { IsAuthenticatedGuard } from './users/is-authenticated.guard';
 import { ProfileComponent } from './users/profile/profile.component';
 
@@ -23,14 +23,6 @@ const routes: Routes = [
   {
     path: 'login',
     component: LoginComponent,
-  },
-  {
-    path: 'signup',
-    component: SignupComponent,
-  },
-  {
-    path: 'reset-password',
-    component: ResetPasswordComponent,
   },
   // usuarios
   {
@@ -81,6 +73,16 @@ const routes: Routes = [
     data: {
       review: true,
     },
+  },
+  {
+    path: 'courses/:id/challenge',
+    component: ChallengeComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'courses/:id/challenge/users',
+    component: UsersChallengeComponent,
+    canActivate: [IsAuthenticatedGuard],
   },
   // error 404
   {

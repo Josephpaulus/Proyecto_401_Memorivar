@@ -1,0 +1,24 @@
+<div class="wrapper">
+  <div class="challenge">
+    <div class="header">
+      <div class="info-content">
+        <div class="name">Competencia</div>
+        <div class="description">Pon a prueba tus conocimientos</div>
+        <div class="more-info">
+          <div class="owner"></div>
+          <div class="actions">
+            <a class="restart" mat-button>
+              <mat-icon matSuffix (click)="restore()">restore</mat-icon>
+            </a>
+            <a mat-button (click)="challenge()">DESAFIAR</a>
+          </div>
+        </div>
+      </div>
+    </div>
+    <div class="content">
+      <div class="no-history">
+        <h2>No has desafiado a nadie</h2>
+      </div>
+    </div>
+  </div>
+</div>

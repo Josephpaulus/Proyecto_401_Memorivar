@@ -12,6 +12,9 @@
             Creado por:<span>{{ courseOwner }}</span>
           </div>
           <div class="actions">
+            <a class="challenge" mat-button [routerLink]="['/courses/', courseId, 'challenge']">
+              <mat-icon matSuffix>track_changes</mat-icon>
+            </a>
             <a class="delete" mat-button (click)="unjoin()">
               <mat-icon matSuffix>exit_to_app</mat-icon>
             </a>
@@ -50,7 +53,7 @@
           <td mat-cell *matCellDef="let element">{{ element.answer }}</td>
         </ng-container>
         <ng-container matColumnDef="review">
-          <th mat-header-cell *matHeaderCellDef>Repasar</th>
+          <th mat-header-cell *matHeaderCellDef>Repasar en</th>
           <td mat-cell *matCellDef="let element">{{ reviewIn(element.timeReview) }}</td>
         </ng-container>
         <tr mat-header-row *matHeaderRowDef="displayedColumns"></tr>

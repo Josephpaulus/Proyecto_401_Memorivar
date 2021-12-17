@@ -93,6 +93,7 @@ export class AddCourseComponent implements OnInit {
     this.wordInEdit = this.dataSource.indexOf(row);
     this.wordInput.nativeElement.value = row.concept;
     this.answerInput.nativeElement.value = row.answer;
+    this.wordInput.nativeElement.focus();
 
     this.addIcon = 'save';
   }

@@ -1,5 +1,5 @@
 <div class="wrapper">
-  <div class="list-courses">
+  <div class="list-courses" *ngIf="showCourses">
     <div class="course" *ngFor="let course of courses">
       <div class="image">
         <img src="{{ course.image }}" alt="" />
@@ -37,5 +37,12 @@
         </div>
       </div>
     </div>
+  </div>
+  <div class="no-courses" *ngIf="!showCourses">
+    <h1>No estás suscrito a ningún curso</h1>
+    <a mat-button (click)="back()">
+      Explorar cursos
+      <mat-icon>keyboard_arrow_right</mat-icon>
+    </a>
   </div>
 </div>

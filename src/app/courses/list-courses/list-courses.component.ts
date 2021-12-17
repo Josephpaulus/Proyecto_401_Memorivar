@@ -1,4 +1,5 @@
 import { Component, OnInit } from '@angular/core';
+import { Router } from '@angular/router';
 import { user } from 'src/app/users/users';
 import { UsersService } from 'src/app/users/users.service';
 import { course, ListCourses } from '../courses';
@@ -14,7 +15,10 @@ export class ListCoursesComponent implements OnInit {
   courses: ListCourses[] = [];
   user!: user;
 
+  showCourses: boolean = true;
+  
   constructor(
+    public router: Router,
     private UsersService: UsersService,
     private CoursesService: CoursesService,
     private LearnService: LearnService
@@ -26,6 +30,10 @@ export class ListCoursesComponent implements OnInit {
     this.CoursesService.userCourses(this.user.id).subscribe((courses) => {
       for (const course of courses) {
         this.processCourse(course);
+      }
+
+      if (courses.length === 0) {
+        this.showCourses = false;
       }
     });
   }
@@ -78,6 +86,10 @@ export class ListCoursesComponent implements OnInit {
     } else {
       return this.secondsToTime(timeReview - this.getTime());
     }
+  }
+
+  back() {
+    this.router.navigate(['/explore']);
   }
 
   getTime() {

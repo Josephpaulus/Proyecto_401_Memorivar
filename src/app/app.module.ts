@@ -25,9 +25,7 @@ import { HeaderComponent } from './header/header.component';
 import { FooterComponent } from './footer/footer.component';
 import { ListCoursesComponent } from './courses/list-courses/list-courses.component';
 import { LoginComponent } from './login/login.component';
-import { SignupComponent } from './signup/signup.component';
 import { ExploreCoursesComponent } from './courses/explore-courses/explore-courses.component';
-import { ResetPasswordComponent } from './reset-password/reset-password.component';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
 import { HeaderProfileComponent } from './users/header-profile/header-profile.component';
 import { ProfileComponent } from './users/profile/profile.component';
@@ -40,6 +38,8 @@ import { ShowAnswerInputComponent } from './courses/learn/show-answer-input/show
 import { ShowAnswerErrorComponent } from './courses/learn/show-answer-error/show-answer-error.component';
 import { ResultsLearningComponent } from './courses/learn/results-learning/results-learning.component';
 import { MsgLearnComponent } from './courses/learn/msg-learn/msg-learn.component';
+import { ChallengeComponent } from './courses/challenge/challenge/challenge.component';
+import { UsersChallengeComponent } from './courses/challenge/users-challenge/users-challenge.component';
 
 @NgModule({
   declarations: [
@@ -48,9 +48,7 @@ import { MsgLearnComponent } from './courses/learn/msg-learn/msg-learn.component
     FooterComponent,
     ListCoursesComponent,
     LoginComponent,
-    SignupComponent,
     ExploreCoursesComponent,
-    ResetPasswordComponent,
     AddCourseComponent,
     HeaderProfileComponent,
     ProfileComponent,
@@ -63,6 +61,8 @@ import { MsgLearnComponent } from './courses/learn/msg-learn/msg-learn.component
     ShowAnswerErrorComponent,
     ResultsLearningComponent,
     MsgLearnComponent,
+    ChallengeComponent,
+    UsersChallengeComponent,
   ],
   imports: [
     HttpClientModule,

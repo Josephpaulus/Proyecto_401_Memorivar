@@ -42,6 +42,30 @@
   }
 }
 
+.no-courses {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+
+  h1 {
+    color: #fff;
+    position: relative;
+    top: 100px;
+  }
+
+  .mat-button {
+    background-color: #307bff;
+    margin: 0 10px;
+    border-radius: 20px !important;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 130px;
+    color: #fff;
+    height: 40px;
+  }
+}
+
 mat-progress-bar {
   margin: 20px 0;
   height: 10px;
@@ -56,7 +80,7 @@ mat-progress-bar {
 }
 
 ::ng-deep .mat-progress-bar {
-  border-radius: 2px;
+  border-radius: 10px !important;
 }
 
 .actions .mat-button:last-child {

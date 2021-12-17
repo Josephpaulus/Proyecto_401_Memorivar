@@ -25,4 +25,5 @@ export interface user {
   // password: string;
   image: string;
   email: string;
+  points?: number;
 }

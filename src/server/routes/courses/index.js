@@ -370,6 +370,20 @@ const courses = (app, pool) => {
 
     response.end();
   });
+
+  app.get('/courses/:id/users', (request, response) => {
+    const id = request.params.id;
+
+    pool.query(
+      'SELECT u.id, u.user, u.image, uc.points FROM users_courses AS uc JOIN users as u ON u.id = uc.user_id WHERE uc.course_id = ? AND uc.status = ?',
+      [id, 1],
+      (error, result) => {
+        if (error) throw error;
+
+        response.json(result);
+      }
+    );
+  });
 };
 
 // Export the courses
