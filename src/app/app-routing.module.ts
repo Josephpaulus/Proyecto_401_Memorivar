@@ -1,6 +1,7 @@
 import { NgModule } from '@angular/core';
 import { RouterModule, Routes } from '@angular/router';
 import { AddCourseComponent } from './courses/add-course/add-course.component';
+import { ChallengeDetailsComponent } from './courses/challenge/challenge-details/challenge-details.component';
 import { ChallengeComponent } from './courses/challenge/challenge/challenge.component';
 import { UsersChallengeComponent } from './courses/challenge/users-challenge/users-challenge.component';
 import { EditCourseComponent } from './courses/edit-course/edit-course.component';
@@ -74,6 +75,7 @@ const routes: Routes = [
       review: true,
     },
   },
+  // desafios
   {
     path: 'courses/:id/challenge',
     component: ChallengeComponent,
@@ -82,6 +84,11 @@ const routes: Routes = [
   {
     path: 'courses/:id/challenge/users',
     component: UsersChallengeComponent,
+    canActivate: [IsAuthenticatedGuard],
+  },
+  {
+    path: 'courses/:id/challenge/:challengeId/details',
+    component: ChallengeDetailsComponent,
     canActivate: [IsAuthenticatedGuard],
   },
   // error 404

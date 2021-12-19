@@ -15,7 +15,7 @@ export class LearnService {
   reviewTime: number = 3 * 60;
 
   pointsForAnsweingRight: number = 50;
-  pointsForSpeed: number = 30;
+  pointsForSpeed: number = 120;
   pointsForAccuracy: number = 50;
 
   constructor(private http: HttpClient) {}

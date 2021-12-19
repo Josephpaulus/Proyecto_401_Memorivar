@@ -46,14 +46,9 @@
         display: flex;
         justify-content: space-between;
 
-        .owner {
-          display: flex;
-          align-items: center;
-
-          span {
-            margin-left: 5px;
-            font-weight: 500;
-          }
+        .back {
+          margin: 0 !important;
+          top: 10px;
         }
 
         .actions {
@@ -88,6 +83,7 @@
 
   .content {
     width: 60%;
+    max-width: 400px;
     margin: 20px 0;
 
     table {
@@ -106,11 +102,85 @@
   }
 }
 
-.no-history {
-  h2 {
-    color: #fff;
+h2 {
+  color: #fff;
+  position: relative;
+  top: 50px;
+  text-align: center;
+}
+
+.history {
+  .opponent {
+    display: flex;
+    border: 1px solid;
+    border-radius: 4px;
+    margin-bottom: 10px;
+    padding: 10px;
+    cursor: pointer;
+  }
+
+  .opponent-image {
+    display: flex;
+
+    img {
+      border-radius: 50%;
+    }
+  }
+
+  .opponent-name {
+    width: 100px;
+    white-space: nowrap;
+    overflow: hidden;
+    text-overflow: ellipsis;
+    font-weight: 500;
+  }
+
+  .info-content {
+    width: 40%;
+    display: flex;
+    align-items: center;
+  }
+
+  .status,
+  .more-info {
+    display: flex;
+    align-items: center;
     position: relative;
-    top: 50px;
-    text-align: center;
+    left: 0;
+  }
+
+  .status {
+    width: 40%;
+    display: flex;
+    justify-content: center;
+
+    span {
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+
+    .lost {
+      color: #f23a2f;
+    }
+
+    .win {
+      color: #43a547;
+    }
+
+    .draw,
+    .waiting,
+    .your-turn {
+      color: #949393;
+    }
+  }
+
+  .info {
+    margin-left: 10px;
+  }
+
+  .more-info {
+    width: 20%;
+    display: flex;
+    justify-content: center;
   }
 }

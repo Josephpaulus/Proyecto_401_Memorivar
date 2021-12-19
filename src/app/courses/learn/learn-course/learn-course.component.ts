@@ -1,8 +1,9 @@
 import { Component, OnInit, ViewChild } from '@angular/core';
 import { ActivatedRoute, Router } from '@angular/router';
-import { take } from 'rxjs/operators';
 import { user } from 'src/app/users/users';
 import { UsersService } from 'src/app/users/users.service';
+import { ChallengeService } from '../../challenge/challenge.service';
+import { Challenge } from '../../challenge/challenge';
 import { Action, Answer, Concept, LearnedConcept, View } from '../learn';
 import { LearnService } from '../learn.service';
 import { ShowAnswerInputComponent } from '../show-answer-input/show-answer-input.component';
@@ -61,19 +62,33 @@ export class LearnCourseComponent implements OnInit {
 
   points: number = 0;
 
+  title: string = '';
   msg: string = '';
 
   review: boolean = false;
 
+  challenge: boolean;
+  challengeId: number;
+  isOpponent: boolean;
+  opponentId: number;
+
   constructor(
     private UsersService: UsersService,
     private LearnService: LearnService,
+    private ChallengeService: ChallengeService,
     private route: ActivatedRoute,
     private router: Router
   ) {
     this.user = this.UsersService.getCurrentUser();
     this.courseId = this.route.snapshot.params.id;
     this.review = this.route.snapshot.data.review;
+
+    const data = this.router.getCurrentNavigation()?.extras?.state;
+
+    this.challenge = !!data?.challenge;
+    this.challengeId = data?.challengeId;
+    this.opponentId = data?.opponentId;
+    this.isOpponent = !!data?.opponent;
 
     this.LearnService.getConcepts(this.courseId).subscribe((concepts) => {
       this.concepts = concepts;
@@ -90,9 +105,13 @@ export class LearnCourseComponent implements OnInit {
 
         if (this.review) {
           this.startReview();
+        } else if (this.challenge) {
+          this.startChallenge();
         } else {
           this.startSession();
         }
+
+        this.updateTitle();
       });
     });
   }
@@ -268,6 +287,49 @@ export class LearnCourseComponent implements OnInit {
     this.view = View.input;
   }
 
+  async startChallenge() {
+    if (this.concepts.length === 0) {
+      this.msg = 'No hay conceptos para desafiar';
+      this.view = View.msg;
+      return;
+    }
+
+    this.msg = 'Cargando...';
+    this.view = View.msg;
+
+    if (this.isOpponent) {
+      this.concepts = await this.ChallengeService.getConcepts({
+        challengeId: this.challengeId,
+        courseId: this.courseId,
+        userId: this.user.id,
+      }).toPromise();
+    } else {
+      this.concepts = this.concepts
+        .sort(() => Math.random() - Math.random())
+        .slice(0, this.ChallengeService.conceptsPerChallenge);
+
+      const challenge: Challenge = {
+        courseId: this.courseId,
+        userId: this.user.id,
+        opponentId: this.opponentId,
+        creationTime: this.getTime(),
+        concepts: this.concepts,
+      };
+
+      this.challengeId = await this.ChallengeService.createChallenge(
+        challenge
+      ).toPromise();
+    }
+
+    this.totalTransactions = this.concepts.length;
+
+    this.currentConcept = 0;
+
+    this.updateConcept();
+
+    this.view = View.input;
+  }
+
   updateConcept() {
     this.concept = this.concepts[this.currentConcept].concept;
     this.answer = this.concepts[this.currentConcept].answer;
@@ -312,11 +374,14 @@ export class LearnCourseComponent implements OnInit {
           this.action = Action.next;
         } else {
           this.statusAnswer = Answer.wrong;
-          this.action = Action.seeAnswer;
+
+          if (!this.challenge) {
+            this.action = Action.seeAnswer;
+          }
         }
 
         this.showAnswerInput.setStatus(this.statusAnswer);
-      } else if (this.statusAnswer === Answer.wrong) {
+      } else if (this.statusAnswer === Answer.wrong && !this.challenge) {
         if (this.answerInput === '') {
           this.view = View.answer;
         } else {
@@ -327,6 +392,33 @@ export class LearnCourseComponent implements OnInit {
 
         this.action = Action.next;
         this.statusAnswer = Answer.none;
+      } else if (this.challenge) {
+        if (this.answerInput === this.answer) {
+          this.ChallengeService.updateAnswer(
+            this.challengeId,
+            this.courseId,
+            this.user.id,
+            this.concepts[this.currentConcept].id,
+            1
+          ).toPromise();
+        }
+
+        this.statusAnswer = Answer.none;
+        this.currentTransaction++;
+        this.updateProgress();
+
+        this.currentConcept++;
+
+        if (this.currentConcept < this.concepts.length) {
+          this.updateConcept();
+        }
+
+        this.view = View.init;
+
+        setTimeout(() => {
+          this.answerInput = '';
+          this.view = View.input;
+        }, 0);
       } else {
         const learnedConcept: LearnedConcept = {
           concept: this.concepts[this.currentConcept],
@@ -433,9 +525,26 @@ export class LearnCourseComponent implements OnInit {
     }
 
     if (this.currentTransaction === this.totalTransactions) {
-      setTimeout(() => {
-        this.view = View.results;
-      }, 0);
+      if (this.challenge) {
+        setTimeout(() => {
+          this.msg = 'Cargando...';
+          this.view = View.msg;
+        }, 0);
+
+        if (this.isOpponent) {
+          this.ChallengeService.finishChallenge(this.challengeId).subscribe(
+            () => {
+              this.router.navigate(['./courses/', this.courseId, 'challenge']);
+            }
+          );
+        } else {
+          this.router.navigate(['./courses/', this.courseId, 'challenge']);
+        }
+      } else {
+        setTimeout(() => {
+          this.view = View.results;
+        }, 0);
+      }
 
       console.log('session finished');
     }
@@ -455,7 +564,22 @@ export class LearnCourseComponent implements OnInit {
     );
   }
 
+  updateTitle() {
+    if (this.review) {
+      this.title = 'Repaso';
+    } else if (this.challenge) {
+      this.title = 'Desafío';
+    } else {
+      this.title = `Sesión ${this.currentSession + 1}`;
+    }
+  }
+
   exit() {
+    if (this.challenge) {
+      this.router.navigate(['./courses/', this.courseId, 'challenge']);
+      return;
+    }
+
     this.router.navigate(['./courses/', this.courseId, 'info']);
   }
 

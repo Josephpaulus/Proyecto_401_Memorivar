@@ -1,0 +1,100 @@
+.challenge-details {
+  width: 100%;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  color: #fff;
+
+  .header {
+    margin: 20px 0;
+
+    .title {
+      font-size: 20px;
+      text-transform: uppercase;
+      font-weight: 500;
+    }
+  }
+
+  .mat-button {
+    background-color: #307bff;
+    margin: 0 10px;
+    border-radius: 20px !important;
+    display: flex;
+    align-items: center;
+    position: relative;
+    top: 30px;
+    color: #fff;
+    height: 40px;
+  }
+}
+
+.content {
+  width: 90%;
+  max-width: 600px;
+  display: flex;
+  flex-direction: column;
+}
+
+.details {
+  display: flex;
+  border: 1px solid;
+  border-radius: 4px;
+  flex-direction: column;
+}
+
+.details-head {
+  display: flex;
+  border-bottom: 1px solid;
+  font-weight: 500;
+
+  > div {
+    text-align: left;
+    padding: 10px 0;
+    display: flex;
+    align-items: center;
+  }
+}
+
+.details-head > div:nth-child(-n + 2),
+.details-body div div:nth-child(-n + 2) {
+  width: 25%;
+  padding-left: 10px;
+  display: flex;
+  align-items: center;
+}
+
+.details-head > div:nth-last-child(-n + 2),
+.details-body div div:nth-last-child(-n + 2) {
+  width: 25%;
+  justify-content: space-evenly;
+}
+
+.details-body div div:nth-last-child(-n + 2), {
+  text-align: center;
+}
+
+.image {
+  display: flex;
+
+  img {
+    width: 40px;
+    border-radius: 50%;
+  }
+}
+
+.challenger {
+  display: flex;
+}
+
+.detail {
+  display: flex;
+  padding-top: 5px;
+}
+
+.correct {
+  color: #43a547;
+}
+
+.wrong {
+  color: #f23a2f;
+}

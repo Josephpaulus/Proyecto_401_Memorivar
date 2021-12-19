@@ -1,0 +1,62 @@
+<div class="wrapper">
+  <div class="challenge-details">
+    <div class="header">
+      <div class="title" *ngIf="status === 1">¡ganaste!</div>
+      <div class="title" *ngIf="status === 0">¡perdiste!</div>
+      <div class="title" *ngIf="status === -1">¡empate!</div>
+      <div class="title" *ngIf="status === null">en espera</div>
+    </div>
+    <div class="content">
+      <div class="details">
+        <div class="details-head">
+          <div class="concept">Concepto</div>
+          <div class="answer">Respuesta</div>
+          <div class="challenger">
+            <div class="info">
+              <div class="user">Tú</div>
+            </div>
+          </div>
+          <div class="opponent">
+            <div class="info">
+              <div class="user">{{ (opponent || {}).user }}</div>
+            </div>
+            <div class="image">
+              <img src="{{ (opponent || {}).image }}" alt="" />
+            </div>
+          </div>
+        </div>
+        <div class="details-body">
+          <div class="detail" *ngFor="let detail of details">
+            <div class="concept">{{ detail.concept }}</div>
+            <div class="answer">{{ detail.answer }}</div>
+            <div class="challenger-result">
+              <mat-icon class="correct" *ngIf="detail.challenger.correctAnswer"
+                >check</mat-icon
+              >
+              <mat-icon class="wrong" *ngIf="!detail.challenger.correctAnswer"
+                >close</mat-icon
+              >
+            </div>
+            <div class="opponent-result">
+              <mat-icon
+                class="correct"
+                *ngIf="detail.opponent.correctAnswer && status !== null"
+                >check</mat-icon
+              >
+              <mat-icon
+                class="wrong"
+                *ngIf="!detail.opponent.correctAnswer && status !== null"
+                >close</mat-icon
+              >
+              <span *ngIf="status === null">-</span>
+            </div>
+          </div>
+        </div>
+      </div>
+    </div>
+    <a mat-button (click)="back()">
+      <mat-icon>keyboard_return</mat-icon>
+      Regresar
+    </a>
+  </div>
+</div>

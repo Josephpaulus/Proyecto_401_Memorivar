@@ -29,10 +29,14 @@
         </div>
       </div>
     </div>
+    <a class="back" mat-button (click)="back()">
+      <mat-icon>keyboard_return</mat-icon>
+      Regresar
+    </a>
   </div>
   <div class="no-users" *ngIf="!showUsers">
     <h1>No hay usuarios para desafiar</h1>
-    <a mat-button (click)="back()">
+    <a class="back" mat-button (click)="back()">
       <mat-icon>keyboard_return</mat-icon>
       Regresar
     </a>

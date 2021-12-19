@@ -5,10 +5,13 @@
         <div class="name">Competencia</div>
         <div class="description">Pon a prueba tus conocimientos</div>
         <div class="more-info">
-          <div class="owner"></div>
+          <a class="back" mat-button (click)="back()">
+            <mat-icon>keyboard_return</mat-icon>
+            Regresar
+          </a>
           <div class="actions">
-            <a class="restart" mat-button>
-              <mat-icon matSuffix (click)="restore()">restore</mat-icon>
+            <a class="restart" mat-button (click)="clearHistory()">
+              <mat-icon>restore</mat-icon>
             </a>
             <a mat-button (click)="challenge()">DESAFIAR</a>
           </div>
@@ -16,8 +19,66 @@
       </div>
     </div>
     <div class="content">
-      <div class="no-history">
+      <div class="no-history" *ngIf="!showHistory">
         <h2>No has desafiado a nadie</h2>
+      </div>
+      <h2 *ngIf="!loaded && showHistory">Cargando...</h2>
+      <div class="history" *ngIf="showHistory">
+        <div
+          class="opponent"
+          *ngFor="let challenge of history"
+          (click)="
+            challengeDetails(
+              challenge.id,
+              challenge.originalOpponent.id === user.id &&
+                challenge.status === 0
+            )
+          "
+        >
+          <div class="info-content">
+            <div class="opponent-image">
+              <img src="{{ challenge.opponent.image }}" alt="" />
+            </div>
+            <div class="info">
+              <div class="opponent-name">{{ challenge.opponent.user }}</div>
+              <div class="creation-time">
+                {{ formatDate(challenge.creationTime) }}
+              </div>
+            </div>
+          </div>
+          <div class="status">
+            <span class="win" *ngIf="challenge.winner">ganaste</span>
+            <span
+              class="lost"
+              *ngIf="challenge.winner === false && challenge.status === 1"
+              >perdiste</span
+            >
+            <span
+              class="draw"
+              *ngIf="challenge.winner === null && challenge.status === 1"
+              >empate</span
+            >
+            <span
+              class="waiting"
+              *ngIf="
+                challenge.status === 0 &&
+                challenge.originalOpponent.id !== user.id
+              "
+              >en espera</span
+            >
+            <span
+              class="your-turn"
+              *ngIf="
+                challenge.status === 0 &&
+                challenge.originalOpponent.id === user.id
+              "
+              >tú turno</span
+            >
+          </div>
+          <div class="more-info">
+            <mat-icon>arrow_forward_ios</mat-icon>
+          </div>
+        </div>
       </div>
     </div>
   </div>

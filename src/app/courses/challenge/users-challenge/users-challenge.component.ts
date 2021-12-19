@@ -47,11 +47,16 @@ export class UsersChallengeComponent implements OnInit {
 
   ngOnInit(): void {}
 
-  challenge(userId: number) {
-    console.log(userId);
+  challenge(opponentId: number) {
+    this.router.navigate(['./courses/', this.courseId, 'learn'], {
+      state: {
+        challenge: true,
+        opponentId,
+      },
+    });
   }
 
   back() {
-    this.router.navigate(['./courses/', this.courseId, 'info']);
+    this.router.navigate(['./courses/', this.courseId, 'challenge']);
   }
 }

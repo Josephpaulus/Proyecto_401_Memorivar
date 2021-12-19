@@ -40,6 +40,7 @@ import { ResultsLearningComponent } from './courses/learn/results-learning/resul
 import { MsgLearnComponent } from './courses/learn/msg-learn/msg-learn.component';
 import { ChallengeComponent } from './courses/challenge/challenge/challenge.component';
 import { UsersChallengeComponent } from './courses/challenge/users-challenge/users-challenge.component';
+import { ChallengeDetailsComponent } from './courses/challenge/challenge-details/challenge-details.component';
 
 @NgModule({
   declarations: [
@@ -63,6 +64,7 @@ import { UsersChallengeComponent } from './courses/challenge/users-challenge/use
     MsgLearnComponent,
     ChallengeComponent,
     UsersChallengeComponent,
+    ChallengeDetailsComponent,
   ],
   imports: [
     HttpClientModule,
