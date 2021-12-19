@@ -44,6 +44,7 @@
           display: flex;
           position: relative;
           top: 5px;
+          align-items: center;
 
           > div {
             display: flex;
@@ -64,6 +65,7 @@
             margin-left: 7px;
             padding-left: 7px;
             font-weight: 500;
+            height: 20px;
           }
 
           .concepts,
