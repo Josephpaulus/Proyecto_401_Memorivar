@@ -1,9 +1,10 @@
 {
   "name": "memorivar",
-  "version": "0.0.0",
+  "version": "1.0.0",
   "scripts": {
+    "heroku-postbuild": "ng build --prod",
     "ng": "ng",
-    "start": "ng serve",
+    "start": "node server.js",
     "build": "ng build",
     "watch": "ng build --watch --configuration development",
     "test": "ng test",
@@ -30,6 +31,10 @@
     "rxjs": "~6.6.0",
     "tslib": "^2.3.0",
     "zone.js": "~0.11.4"
+  },
+    "engines": {
+    "node": "16.6.2", 
+    "npm": "7.20.3"
   },
   "devDependencies": {
     "@angular-devkit/build-angular": "~12.2.6",
